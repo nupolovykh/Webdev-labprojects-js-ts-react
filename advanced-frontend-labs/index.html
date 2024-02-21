@@ -18,38 +18,53 @@
         <section>
 
             <form>
-                <input type="text" id="taskInput" placeholder="Добавить новое дело...">
-                <button id="addBtn" type="button" onclick="addTask()">Добавить</button>
-                <button id="rmBtn" type="button" onclick="rmAllTasks()">Очистить</button>
+                <input type="text" id="taskInput" placeholder="Add new task...">
+                <button id="addBtn" type="button" onclick="addTask()">Add</button>
+                <button id="rmBtn" type="button" onclick="rmAllTasks()">Remove</button>
             </form>
 
             <div class="selector">
-                <h2>Выберите группу заметок:</h2>
-                <select id="noteGroupSelector" onchange="showNotes()">
-                    <option value="all">Все заметки</option>
-                    <option value="current">Активные</option>
-                    <option value="completed">Завершенные</option>
-                    <option value="deleted">Удаленные</option>
+                <h2>Select a group of notes:</h2>
+
+                <select id="listSelector" onchange="groupBy()">
+                    <option value="all">All lists</option>
+                    <option value="current">Active</option>
+                    <option value="completed">Completed</option>
+                    <option value="deleted">Deleted</option>
                 </select>
+
+                <select id="orderSelector" onchange="orderBy()">
+                    <option value="dataDesc">По дате &#x25bc;</option>
+                    <option value="dataAsc">По дате &#x25b2;</option>
+                    <option value="textDesc">По тексту &#x25bc;</option>
+                    <option value="textAsc">По тексту &#x25b2;</option>
+                </select>
+
             </div>
 
             <div class="list">
                 <div id="current" class="sublist">
-                    <h3>Активные дела</h3>
+                    <h3>Active tasks</h3>
                     <ul id="activeTasks"></ul>
                 </div>
                 <div id="completed" class="sublist">
-                    <h3>Завершенные дела</h3>
+                    <h3>Completed tasks</h3>
                     <ul id="completedTasks"></ul>
                 </div>
                 <div id="deleted" class="sublist">
-                    <h3>Удаленные дела</h3>
+                    <h3>Deleted tasks</h3>
                     <ul id="deletedTasks"></ul>
                 </div>
             </div>
 
         </section>
-        <script src="scripts.js"></script>
+
+        <script src="js/taskbuilder.js"></script>
+        <script src="js/storage.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/orders.js"></script>
+        <script src="js/additional.js"></script>
+
     </main>
 
     <footer>
