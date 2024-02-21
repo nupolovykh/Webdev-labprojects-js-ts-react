@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="images/todo_favicon.png">
+    <link rel="stylesheet" href="styles.css">
+    <title>MyToDoList</title>
+</head>
+
+<body>
+    <header>
+        <h1> &lt;&lt; MyToDoList &gt;&gt; </h1>
+    </header>
+
+    <main>
+        <section>
+
+            <form>
+                <input type="text" id="taskInput" placeholder="Добавить новое дело...">
+                <button id="addBtn" type="button" onclick="addTask()">Добавить</button>
+                <button id="rmBtn" type="button" onclick="rmAllTasks()">Очистить</button>
+            </form>
+
+            <div class="selector">
+                <h2>Выберите группу заметок:</h2>
+                <select id="noteGroupSelector" onchange="showNotes()">
+                    <option value="all">Все заметки</option>
+                    <option value="current">Активные</option>
+                    <option value="completed">Завершенные</option>
+                    <option value="deleted">Удаленные</option>
+                </select>
+            </div>
+
+            <div class="list">
+                <div id="current" class="sublist">
+                    <h3>Активные дела</h3>
+                    <ul id="activeTasks"></ul>
+                </div>
+                <div id="completed" class="sublist">
+                    <h3>Завершенные дела</h3>
+                    <ul id="completedTasks"></ul>
+                </div>
+                <div id="deleted" class="sublist">
+                    <h3>Удаленные дела</h3>
+                    <ul id="deletedTasks"></ul>
+                </div>
+            </div>
+
+        </section>
+        <script src="scripts.js"></script>
+    </main>
+
+    <footer>
+        <h1> Copyright &copy; 2023 </h1>
+    </footer>
+</body>
+
+</html>
