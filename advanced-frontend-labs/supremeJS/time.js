@@ -1,5 +1,5 @@
 
-///////////////////////// first task
+//1
 //counter(3);
 function counter(n){
     for(let b = n; b >= 0; b--){
@@ -18,7 +18,7 @@ function counter2(n){
 }
 
 
-///////////////////////// first.second task
+//2
 class Timer {
     constructor(n) {
         this.start_value = n;
@@ -50,6 +50,8 @@ class Timer {
 function createCounter(){
     return new Timer(50);
 }
+
+//test of the timer
 
 let timer = createCounter();
 timer.start();
