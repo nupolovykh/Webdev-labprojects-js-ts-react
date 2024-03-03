@@ -36,4 +36,29 @@ function getGithubUser() {
         });
 }
 
-getGithubUser();
+
+//getGithubUser();
+
+//////////////////////////////// my code below this line
+
+async function newGetGithubUser(){
+    let conditionForLoop = false;
+    while(!conditionForLoop){
+        let name = prompt("Enter the login", "iliakan");
+        try{
+            var user = await loadJson(`https://api.github.com/users/${name}`)
+            if(user){
+                alert(`Полное имя: ${user.name}.`);
+                conditionForLoop = true;
+            }
+        }
+        catch (err) {
+            if (err instanceof HttpError && err.response.status == 404){
+                alert("This user does not exist, please re-enter the name.");
+            }
+            else throw err;
+        }
+    }
+}
+
+newGetGithubUser();

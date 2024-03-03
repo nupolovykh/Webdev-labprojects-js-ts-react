@@ -4,7 +4,7 @@
 console.log('start')
 
 //1
-function delay(n){
+function delay(n) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             console.log(n)
@@ -17,22 +17,22 @@ function delay(n){
 
 //2
 
-function delayCounter(n){
+function delayCounter(n) {
     delay(n).then(
         result => {
-            if(n - 1 < 0) return;
+            if (n - 1 < 0) return;
             delayCounter(n - 1);
         }
     )
 }
 
-//secondTask(5);
+//delayCounter(5);
 
 //3
 
 let url = "https://api.github.com/users/goryachkinama/repos"
 
-function fetchFunc(f_url){
+function fetchFunc(f_url) {
     let response = fetch(f_url).then(
         result => {
             console.log('yeah')
@@ -43,7 +43,7 @@ function fetchFunc(f_url){
             console.log(error)
         }
     )
-    response.then((_this) => console.log(_this[1]["full_name"]));
+    response.then((_this) => console.log(_this[0]["full_name"]));
 }
 
-// fetchFunc(url)
+//fetchFunc(url)
