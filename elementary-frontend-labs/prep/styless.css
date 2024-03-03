@@ -1,0 +1,28 @@
+.weight {
+    font-weight: bold;
+    float: left;
+    margin-right: 4px;
+    font-size: 20px;
+}
+
+img {
+    padding-top: 3px;
+}
+
+h1 {
+    text-align: center;
+    background-color: rgb(68, 68, 199);
+    color: white;
+    padding: 7px;
+}
+
+.box {
+    padding-left: 15px;
+    border-left: 1px solid;
+    border-color: gray;
+}
+
+p {
+    line-height: 1.5;
+    font-size: 16px;
+}

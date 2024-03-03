@@ -1,0 +1,52 @@
+
+<form action="" method="POST">
+    <h2>Анкета читателя</h2>
+    
+    <div>
+        <label for="fname">Введите регистрационное имя:</label>
+        <input type="text" id="fname" name="fname" placeholder="Spongebob" required>
+    </div>
+
+    <div>
+        <label for="pass">Введите пароль:</label>
+        <input type="password" id="pass" name="pass" maxlength="12" required>
+    </div>
+
+    <div>
+        <label for="age">Ваш возраст:</label>
+
+        <label for="tw">менее 20-ти</label>
+        <input type="radio" id="tw" name="age" value="tw">
+
+        <label for="tw-th">от 20-ти до 30-ти</label>
+        <input type="radio" id="tw-th" name="age" value="tw-th">
+
+        <label for="th">страше 30-ти</label>
+        <input type="radio" id="th" name="age" value="th">
+    </div>
+
+
+    <h2>Книги каких жанров Вы предпочитаете?</h2>
+
+    <div>
+        <label for="style">Жанры: </label>
+        <select id="style" name="style">
+            <option value="det">Детективы</option>
+            <option value="fan">Фантастика</option>
+            <option value="poeth">Поэзия</option>
+        </select>
+    </div>
+
+    <h2>Как Вы узнаёте о новых книгах?</h2>
+
+    <p><input type="checkbox" name="cb1">От преподавателей</p>
+    <p><input type="checkbox" name="cb1">От друзей и знакомых</p>
+    <p><input type="checkbox" name="cb1">В магазине</p>
+    <p><input type="checkbox" name="cb1">На книжных ярмарках</p>
+    <p><input type="checkbox" name="cb1">Через интернет</p>
+
+    <div>
+        <input type="submit" value="Отправить">
+        <input type="reset" value="Сброс">
+    </div>
+</form>

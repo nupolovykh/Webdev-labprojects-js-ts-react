@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Tasks</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>JavaScript Lab17</h1>
+    </header>
+    <main>
+        <section id="task-list">
+            <h2>Task List</h2>
+            <ul>
+                <li>
+                    <div class="task">
+                        <span class="task-title">Task 1: Example Task</span>
+                        <button class="task-button" onclick="firstTask()">Start</button>
+                    </div>
+                </li>
+                <li>
+                    <div class="task">
+                        <span class="task-title">Task 2: Example Task</span>
+                        <button class="task-button" onclick="secondTask()">Start</button>
+                    </div>
+                </li>
+                <li>
+                    <div class="task">
+                        <span class="task-title">Task 3: Example Task</span>
+                        <button class="task-button" onclick="thirdTask()">Start</button>
+                    </div>
+                </li>
+                <li>
+                    <div class="task">
+                        <span class="task-title">Task 4: Example Task</span>
+                        <button class="task-button" onclick="fourthTask()">Start</button>
+                    </div>
+                </li>
+                <li>
+                    <div class="task">
+                        <span class="task-title">Clear the Output</span>
+                        <button class="task-button" onclick="Clear()">Start</button>
+                    </div>
+                </li>
+            </ul>
+        </section>
+        <section id="task-details">
+            <h2>Output-field</h2>
+            <div class="output-field">
+                <p id="textarea">Output...</p>
+            </div>
+            <div class="task-description">
+            </div>
+        </section>
+    </main>
+    <footer>
+        <h2>&copy; 2023 Laboratornye</h2>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function firstTask() {
+            const favoriteCharacters = ["Добрыня", "Илья", "Алёша"];
+            for (let i = 0; i < favoriteCharacters.length; i++) {
+                $("#textarea").append("<p>" + favoriteCharacters[i] + "</p>");
+            }
+        }
+
+        let kino = 0, knigi = 0, auto = 0;
+
+        function secondTask() {
+            const answer = prompt("Что вы больше любите: кино, книги, автомобили?");
+            let content = '';
+            if (answer === "кино") {
+                content = `<div id='movie${kino++}'><p>Драйв</p></div> <div id='movie${kino++}'><p>Зелёный слоник</p></div> <div id='movie${kino++}'><p>Груз 200</p></div>`;
+            } else if (answer === "книги") {
+                content = `<div id='book${knigi++}'><p>Изумрудный город</p></div> <div id='book${knigi++}'><p>Искусство войны</p></div> <div id='book${knigi++}'><p>Трансгуманизм</p></div>`;
+            } else if (answer === "автомобили") {
+                content = `<div id='car${auto++}'><p>Жигули</p></div> <div id='car${auto++}'><p>Матиз</p></div> <div id='car${auto++}'><p>Порше Панамэра</p></div>`;
+            } else {
+                content = "Retry";
+            }
+            $("#textarea").append(content);
+        }
+
+        function thirdTask() {
+            const answer = prompt("Что вы больше любите: кино, книги, автомобили?");
+            if (answer === "кино") {
+                for (var j = 0; j < kino; j++) {
+                    if (j % 3 == 0) $(`#movie${j}`).append("<img src='drive.jpg'>");
+                    if (j % 3 == 1) $(`#movie${j}`).append("<img src='Зелёный_слоник.jpg'>");
+                    if (j % 3 == 2) $(`#movie${j}`).append("<img src='Груз_200.jpg'>");
+                }
+            } else if (answer === "книги") {
+                for (var j = 0; j < knigi; j++) {
+                    if (j % 3 == 0) $(`#book${j}`).append("<img src='izumrud.jpg'>");
+                    if (j % 3 == 1) $(`#book${j}`).append("<img src='best.jpg'>");
+                    if (j % 3 == 2) $(`#book${j}`).append("<img src='ahaha.png'>");
+                }
+            } else if (answer === "автомобили") {
+                for (var j = 0; j < auto; j++) {
+                    if (j % 3 == 0) $(`#car${j}`).append("<img src='zhiguli.jpg'>");
+                    if (j % 3 == 1) $(`#car${j}`).append("<img src='Matiz.jpg'>");
+                    if (j % 3 == 2) $(`#car${j}`).append("<img src='panamera.jpg'>");
+                }
+            } else {
+                content = "Retry";
+            }
+            $("#textarea").append(content);
+        }
+
+        function fourthTask() {
+            const correctPoem = ["Строка 1", "Строка 2", "Строка 3", "Строка 4"];
+            let correctLines = 0;
+            for (let i = 0; i < correctPoem.length; i++) {
+                const userInput = prompt("Введите строку " + (i + 1) + " четверостишия:");
+                if (userInput === correctPoem[i]) {
+                    correctLines++;
+                }
+            }
+            $("#textarea").text("Правильно введено " + correctLines + " строки");
+        }
+
+        function Clear() {
+            $("#textarea").text("Output...");
+        }
+    </script>
+</body>
+
+</html>
