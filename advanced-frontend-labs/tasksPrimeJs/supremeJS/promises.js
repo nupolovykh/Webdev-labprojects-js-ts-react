@@ -46,4 +46,4 @@ function fetchFunc(f_url) {
     response.then((_this) => console.log(_this[0]["full_name"]));
 }
 
-//fetchFunc(url)
+fetchFunc(url)
