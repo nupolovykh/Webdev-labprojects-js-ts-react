@@ -1,4 +1,4 @@
-function parseDateFromString(dateString) {
+export function parseDateFromString(dateString) {
     const dateParts = dateString.replace('от ', '').split('/');
     const day = parseInt(dateParts[0], 10);
     const month = parseInt(dateParts[1], 10) - 1;
