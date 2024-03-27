@@ -1,7 +1,7 @@
 //import { readFile } from 'node:fs';
 
 const fs = require('node:fs');
-const path = 'G:\\Current_Semester_WebDevelopment\\tasksPrimeJs\\nodeJS\\note.txt';
+const path = 'note.txt';
 
 function reader(){
     const data = fs.readFileSync(path, 'utf8');
