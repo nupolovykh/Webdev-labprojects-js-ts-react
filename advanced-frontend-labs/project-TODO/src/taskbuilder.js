@@ -1,4 +1,6 @@
-function createTaskListItem(task) {
+import { saveTasks } from './storage.js';
+
+export function createTaskListItem(task) {
     let li = document.createElement('li');
 
     let checkMark = createButton('&#10004;', passTask);
@@ -13,14 +15,14 @@ function createTaskListItem(task) {
     return li;
 }
 
-function createButton(text, onClickHandler) {
+export function createButton(text, onClickHandler) {
     let button = document.createElement('button');
     button.innerHTML = text;
     button.onclick = onClickHandler;
     return button;
 }
 
-function passTask() {
+export function passTask() {
     let ul = this.parentNode.parentNode.id;
     if (ul === 'activeTasks') {
         document.getElementById('completedTasks').appendChild(this.parentNode);
@@ -36,13 +38,13 @@ function passTask() {
     saveTasks();
 }
 
-function returnTask(){
+export function returnTask(){
     let confirmDelete = confirm('Are you sure you want to delete this entry permanently?');
     if (confirmDelete) this.parentNode.remove();
     saveTasks();
 }
   
-function createTaskDescription(task) {
+export function createTaskDescription(task) {
     let descriptionDiv = document.createElement('div');
     descriptionDiv.style.display = 'flex';
     descriptionDiv.style.flexDirection = 'column';

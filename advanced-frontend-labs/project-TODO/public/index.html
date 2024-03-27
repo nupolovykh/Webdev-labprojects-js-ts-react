@@ -5,7 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="images/todo_favicon.png">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+
+    <!-- <script src="/project-TODO/src/index.js"></script>
+    <script src="/project-TODO/src/taskbuilder.js"></script>
+    <script src="/project-TODO/src/storage.js"></script>
+    <script src="/project-TODO/src/main.js"></script>
+    <script src="/project-TODO/src/orders.js"></script>
+    <script src="/project-TODO/src/additional.js"></script> -->
+
     <title>MyToDoList</title>
 </head>
 
@@ -19,21 +27,21 @@
 
             <form>
                 <input type="text" id="taskInput" placeholder="Add new task...">
-                <button id="addBtn" type="button" onclick="addTask()">Add</button>
-                <button id="rmBtn" type="button" onclick="rmAllTasks()">Remove</button>
+                <button id="addBtn" type="button">Add</button>
+                <button id="rmBtn" type="button">Remove</button>
             </form>
 
             <div class="selector">
                 <h2>Select a group of notes:</h2>
 
-                <select id="listSelector" onchange="groupBy()">
+                <select id="listSelector">
                     <option value="all">All lists</option>
                     <option value="current">Active</option>
                     <option value="completed">Completed</option>
                     <option value="deleted">Deleted</option>
                 </select>
 
-                <select id="orderSelector" onchange="orderBy()">
+                <select id="orderSelector">
                     <option value="dataDesc">По дате &#x25bc;</option>
                     <option value="dataAsc">По дате &#x25b2;</option>
                     <option value="textDesc">По тексту &#x25bc;</option>
@@ -58,13 +66,6 @@
             </div>
 
         </section>
-
-        <script src="js/taskbuilder.js"></script>
-        <script src="js/storage.js"></script>
-        <script src="js/main.js"></script>
-        <script src="js/orders.js"></script>
-        <script src="js/additional.js"></script>
-
     </main>
 
     <footer>

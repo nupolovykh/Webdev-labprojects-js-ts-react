@@ -1,4 +1,4 @@
-function groupBy() {
+export function groupBy() {
     let selectedGroup = document.getElementById('listSelector').value;
     let lists = document.querySelectorAll('.list > div');
 
@@ -11,7 +11,7 @@ function groupBy() {
     });
 }
 
-function orderBy() {
+export function orderBy() {
     let selectedGroup = document.getElementById('orderSelector').value;
     let uls = document.querySelectorAll('ul');
 
