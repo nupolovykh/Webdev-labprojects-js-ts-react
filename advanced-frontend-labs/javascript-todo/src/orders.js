@@ -1,3 +1,5 @@
+import { parseDateFromString } from './additional.js';
+
 export function groupBy() {
     let selectedGroup = document.getElementById('listSelector').value;
     let lists = document.querySelectorAll('.list > div');
