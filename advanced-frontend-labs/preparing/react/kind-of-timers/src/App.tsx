@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-const FirstTimer: React.FC = () => {
+const FirstTimer = () => {
 	const [count, setCount] = useState(10);
 
 	useEffect(() => {
@@ -15,28 +15,28 @@ const FirstTimer: React.FC = () => {
 		return () => clearInterval(timer);
 	}, [count]);
 
-	return <div>{count}</div>;
+	return <div>{ count }</div>;
 };
 
-const SecondTimer: React.FC = () => {
+const SecondTimer = () => {
 	const [time, setTime] = useState(0);
 	const [isRunning, setIsRunning] = useState(false);
-	const intervalRef = useRef<NodeJS.Timeout>(); // Create a mutable ref for the interval
+	const intervalRef = useRef<NodeJS.Timeout>();
 
 	useEffect(() => {
 		if (isRunning) {
 			intervalRef.current = setInterval(() => {
-				setTime((prevTime) => prevTime + 1); // Increment time by 1 second
+				setTime((prevTime) => prevTime + 1);
 			}, 1000);
 		} else {
-			clearInterval(intervalRef.current); // Clear the interval if the timer stops
+			clearInterval(intervalRef.current);
 		}
 
-		return () => clearInterval(intervalRef.current); // Cleanup on component unmount
+		return () => clearInterval(intervalRef.current);
 	}, [isRunning]);
 
 	const handleStartClick = () => {
-		setIsRunning(true);
+		setIsRunning((prev) => !prev);
 	};
 
 	return (
@@ -47,24 +47,25 @@ const SecondTimer: React.FC = () => {
 	);
 };
 
-const PrimeNumbers: React.FC = () => {
-	const [primes, push] = useState<number[]>([]);
+const PrimeNumbers = () => {
+	const [primes, setPrimes] = useState<number[]>([]);
+
+	const isPrime = (num: number): boolean => {
+		for (let i = 2; i <= Math.sqrt(num); i++) {
+			if (num % i === 0) {
+				return false;
+			}
+		}
+		return num > 1;
+	};
 
 	useEffect(() => {
-		const isPrime = (num: number): boolean => {
-			for (let i = 2; i <= Math.sqrt(num); i++) {
-				if (num % i === 0) {
-					return false;
-				}
-			}
-			return num > 1;
-		};
 		const interval = setInterval(() => {
-			let nextPrime = primes.length === 0 ? 2 : primes[primes.length - 1] + 1;
+			let nextPrime = (primes.length === 0) ? 2 : primes[primes.length - 1] + 1;
 			while (!isPrime(nextPrime)) {
 				nextPrime++;
 			}
-			push([...primes, nextPrime]);
+			setPrimes([...primes, nextPrime]); // setPrimes(prevPrimes => prevPrimes.concat(nextPrime));
 		}, 1000);
 
 		return () => clearInterval(interval);
@@ -72,12 +73,12 @@ const PrimeNumbers: React.FC = () => {
 
 	return (
 		<div>
-			{JSON.stringify(primes)}
+			{ JSON.stringify(primes) }
 		</div>
 	);
 };
 
-const TrafficLight: React.FC = () => {
+const TrafficLight = () => {
 	const [color, setColor] = useState("red");
 	const redToGreenRef = useRef(false);
 
