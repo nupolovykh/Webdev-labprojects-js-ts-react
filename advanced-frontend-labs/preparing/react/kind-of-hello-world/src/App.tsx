@@ -2,11 +2,16 @@ import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-const Square: React.FC<{number: number}> = ({ number}) => {
+//left it just for example of FC without interface 
+const Square: React.FC<{number: number}> = ({ number }) => {
 	return ( <p>The square of {number} is: {number * number}</p> );
 };
 
-const OnlyEven: React.FC<{array: Array<number>}> = ({ array }) => {
+interface OnlyEvenProps {
+	array : number[]
+}
+
+const OnlyEven = ({ array } : OnlyEvenProps) => {
 	let newArray = [];
 	for (let index = 0; index < array.length; index++) {
 		if(array[index] % 2 === 0){
@@ -19,7 +24,11 @@ const OnlyEven: React.FC<{array: Array<number>}> = ({ array }) => {
 	<p>The array of OnlyEven sequence is {newArray}</p>
 )};
 
-const Temperature: React.FC<{ degrees: number}> = ({ degrees }) => {
+interface DegreesProps {
+	degrees : number
+}
+
+const Temperature = ({ degrees } : DegreesProps) => {
 	const mycolor = degrees >= 0 ? 'red' : 'blue';
 	return (
 	<p style={{color: mycolor}}>Today temperature = {degrees} C</p>
