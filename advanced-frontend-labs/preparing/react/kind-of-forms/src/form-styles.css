@@ -1,0 +1,40 @@
+.form-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	max-width: 400px;
+	margin: 0 auto;
+	padding: 20px;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	background-color: #f8f8f8;
+  }
+  
+  .form-input {
+	padding: 8px;
+	width: 100%;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	margin-bottom: 15px;
+  }
+  
+  .form-label {
+	margin-bottom: 5px;
+  }
+  
+  .form-submit {
+	padding: 10px 20px;
+	background: #007bff;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-top: 15px;
+  }
+  
+  .form-message {
+	text-align: center;
+	color: red;
+	margin-top: 15px;
+  }
