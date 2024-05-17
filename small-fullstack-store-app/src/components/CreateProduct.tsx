@@ -19,7 +19,6 @@ interface CreateProductProps {
 	onCreate: (product : IProduct) => void
 }
 
-
 export const CreateProduct = ({ onCreate } : CreateProductProps) => {
 	const [value, setValue] = useState('')
 	const [error, setError] = useState('')
