@@ -1,0 +1,14 @@
+.grid-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr; /* fr => (a/b) size */
+	grid-template-rows: 1fr 1fr;
+	gap: 10px;
+}
+
+.grid-item {
+	border: 1px solid #ccc;
+	padding: 20px;
+	text-align: center;
+	text-wrap: wrap;
+  }
+  
