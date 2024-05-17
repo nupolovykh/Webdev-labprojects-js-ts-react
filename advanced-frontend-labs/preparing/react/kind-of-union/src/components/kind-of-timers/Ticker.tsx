@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-export const Revert: React.FC<{ s: string }> = ({ s }) => {
+export const Ticker: React.FC<{ s: string }> = ({ s }) => {
 	const [revertedString, setRevertedString] = useState(s);
 
 	useEffect(() => {
