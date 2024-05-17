@@ -2,9 +2,9 @@ import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
 import { ProductPage } from "./pages/ProductPage"
 import { AboutPage } from "./pages/AboutPage"
 import { Navigation } from "./components/Navigation"
-import RegistrationForm from './gtp-components/RegisComponent';
-import LoginForm from './gtp-components/LoginComponent';
-import './gtp-styles/Page.css';
+import RegistrationForm from './gpt-components/RegisComponent';
+import LoginForm from './gpt-components/LoginComponent';
+import './gpt-styles/Page.css';
 
 function App() {
 	return (

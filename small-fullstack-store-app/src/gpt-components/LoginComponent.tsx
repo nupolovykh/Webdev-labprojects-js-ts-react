@@ -1,23 +1,20 @@
 import React, { useState } from 'react';
-import '../gtp-styles/RegisForm.css';
+import '../gpt-styles/LoginForm.css';
 
 interface FormData {
   login: string;
   password: string;
-  confirmPassword: string;
 }
 
 interface Errors {
   login?: string;
   password?: string;
-  confirmPassword?: string;
 }
 
-const RegistrationForm: React.FC = () => {
+const LoginForm: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
     login: '',
-    password: '',
-    confirmPassword: ''
+    password: ''
   });
 
   const [errors, setErrors] = useState<Errors>({});
@@ -28,20 +25,10 @@ const RegistrationForm: React.FC = () => {
 
     if (!formData.login) {
       newErrors.login = 'Логин обязателен';
-    } else if (formData.login.length < 6 || formData.login.length > 20) {
-      newErrors.login = 'Логин должен содержать от 6 до 20 символов';
-    } else if (!/^[a-zA-Z0-9]+$/.test(formData.login)) {
-      newErrors.login = 'Логин может содержать только буквы латинского алфавита и цифры';
     }
 
     if (!formData.password) {
       newErrors.password = 'Пароль обязателен';
-    }
-
-    if (!formData.confirmPassword) {
-      newErrors.confirmPassword = 'Повтор пароля обязателен';
-    } else if (formData.confirmPassword !== formData.password) {
-      newErrors.confirmPassword = 'Пароли не совпадают';
     }
 
     setErrors(newErrors);
@@ -59,7 +46,7 @@ const RegistrationForm: React.FC = () => {
     e.preventDefault();
     if (validate()) {
       try {
-        const response = await fetch('/register', {
+        const response = await fetch('/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -69,18 +56,18 @@ const RegistrationForm: React.FC = () => {
 
         const result = await response.json();
         if (response.ok) {
-          setMessage('Регистрация успешна!');
+          setMessage('Авторизация успешна!');
         } else {
-          setMessage(result.error || 'Ошибка при регистрации');
+          setMessage(result.error || 'Ошибка при авторизации');
         }
       } catch (error) {
-        setMessage('Ошибка при регистрации');
+        setMessage('Ошибка при авторизации');
       }
     }
   };
 
   return (
-    <form className="registration-form" onSubmit={handleSubmit}>
+    <form className="login-form" onSubmit={handleSubmit}>
       <div className="form-group">
         <label htmlFor="login" className="form-label">Логин:</label>
         <input
@@ -105,22 +92,10 @@ const RegistrationForm: React.FC = () => {
         />
         {errors.password && <p className="error-message">{errors.password}</p>}
       </div>
-      <div className="form-group">
-        <label htmlFor="confirmPassword" className="form-label">Повтор пароля:</label>
-        <input
-          type="password"
-          id="confirmPassword"
-          name="confirmPassword"
-          className="form-input"
-          value={formData.confirmPassword}
-          onChange={handleChange}
-        />
-        {errors.confirmPassword && <p className="error-message">{errors.confirmPassword}</p>}
-      </div>
-      <button type="submit" className="submit-button">Зарегистрироваться</button>
+      <button type="submit" className="submit-button">Войти</button>
       {message && <p>{message}</p>}
     </form>
   );
 };
 
-export default RegistrationForm;
+export default LoginForm;

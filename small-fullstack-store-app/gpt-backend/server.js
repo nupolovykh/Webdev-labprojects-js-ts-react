@@ -4,7 +4,7 @@ const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 
 const app = express();
-const db = new sqlite3.Database('../gtp-backend/database.sqlite');
+const db = new sqlite3.Database('../gpt-backend/database.sqlite');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
