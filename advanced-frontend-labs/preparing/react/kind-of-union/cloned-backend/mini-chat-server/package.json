@@ -1,0 +1,51 @@
+{
+  "name": "mini-chat-server",
+  "version": "0.0.2",
+  "description": "Simple chat server with decent API",
+  "main": "index.js",
+  "repository": "https://github.com/dmitryweiner/mini-chat-server",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest",
+    "lint": "eslint . --fix",
+    "doc": "jsdoc --debug -c jsdoc.conf.json",
+    "prettier": "prettier --write \"*/**/*.js\""
+  },
+  "keywords": [
+    "chat",
+    "node"
+  ],
+  "author": "Dmitry Weiner",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-ws": "^4.0.0",
+    "lowdb": "^1.0.0",
+    "morgan": "^1.10.0",
+    "nanoid": "^3.3.3",
+    "stdio": "^2.1.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsdoc": "^30.7.7",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "jest": "^26.0.1",
+    "jsdoc": "^3.6.10",
+    "prettier": "^2.2.1",
+    "supertest": "^4.0.2"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/tests/test-utils.js"
+    ]
+  }
+}
