@@ -1,3 +1,4 @@
+import { wrap } from "module";
 import { useEffect, useState } from "react";
 
 export const PrimeNumbers = () => {
@@ -27,7 +28,7 @@ export const PrimeNumbers = () => {
 
 	return (
 		<div>
-			{ JSON.stringify(primes) }
+			<p style={{maxWidth: '800px', overflowX: 'auto' }}>{ JSON.stringify(primes) }</p>
 		</div>
 	);
 };

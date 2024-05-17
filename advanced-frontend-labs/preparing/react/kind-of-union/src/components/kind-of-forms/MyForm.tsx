@@ -1,5 +1,5 @@
 import { useState } from "react";
-import '../styles/form-styles.css';
+import './../../styles/form-styles.css';
 
 interface MyFormData {
 	firstname: string,
