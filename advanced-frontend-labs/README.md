@@ -81,7 +81,7 @@
 * Задания на fetch
 * Задания на React.query
 
-### 11. React + Typescript:
+### [11. React + Typescript](preparing/react-ts-new-todo)
 
 * TODO-list на React
 
