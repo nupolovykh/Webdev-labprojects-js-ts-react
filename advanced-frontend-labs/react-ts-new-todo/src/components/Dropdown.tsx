@@ -1,6 +1,16 @@
 import { useState } from 'react';
+import { IoIosArrowDropdown } from "react-icons/io";
+import { IStatus } from '../models/StatusModel';
+import { IDeal } from '../models/DealModel';
+import { DropdownItem } from './DropdownItem';
 
-const Dropdown = () => {
+interface DropDownProps {
+	statuses: IStatus[],
+    deal: IDeal,
+	onUpdate : (deal : IDeal) => void
+}
+
+export const DropDown = ({statuses, deal, onUpdate} : DropDownProps) => {
     const [isDropdownOpen, setDropdownOpen] = useState(false);
 
     const toggleDropdown = () => {
@@ -8,31 +18,17 @@ const Dropdown = () => {
     };
 
     return (
-        <div className="relative">
+        <div /*className="relative" => anomaly with modal*/>
             <button
                 id="dropdownHoverButton"
                 data-dropdown-toggle="dropdownHover"
                 data-dropdown-trigger="hover"
-                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                className="text-white bg-gray-700 hover:bg-gray-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800 w-36"
                 type="button"
                 onClick={toggleDropdown}
             >
-                Dropdown hover{' '}
-                <svg
-                    className="w-2.5 h-2.5 ms-3"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 10 6"
-                >
-                    <path
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="m1 1 4 4 4-4"
-                    />
-                </svg>
+                <span className="mr-1">{statuses.find(s => s.id === deal.statusId)?.name}</span>
+				<IoIosArrowDropdown className="text-xl"/>
             </button>
 
             {isDropdownOpen && (
@@ -44,43 +40,12 @@ const Dropdown = () => {
                         className="py-2 text-sm text-gray-700 dark:text-gray-200"
                         aria-labelledby="dropdownHoverButton"
                     >
-                        <li>
-                            <a
-                                href="#"
-                                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                            >
-                                Dashboard
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="#"
-                                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                            >
-                                Settings
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="#"
-                                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                            >
-                                Earnings
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="#"
-                                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                            >
-                                Sign out
-                            </a>
-                        </li>
+                    {statuses.map((status) => (
+                        <DropdownItem key={status.id} statusId={status.id} str={status.name} deal={deal} onUpdate={onUpdate}/>
+                    ))}
                     </ul>
                 </div>
             )}
         </div>
     )
 }
-
-export default Dropdown;

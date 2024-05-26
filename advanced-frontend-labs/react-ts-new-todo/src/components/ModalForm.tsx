@@ -5,18 +5,20 @@ import { useDeals } from "../hooks/UseDeals"
 interface ModalFormProps {
 	deal: IDeal | null
 	action : (deal : IDeal) => void
-	inner : JSX.Element 
+	inner : JSX.Element
+	close : () => void
 }
 
-export const ModalForm = ( {deal, action, inner} : ModalFormProps) => {
+export const ModalForm = ( {deal, action, inner, close} : ModalFormProps) => {
 	const [value, setValue] = useState('')
 	const { staticDeals } = useDeals();
 
-	const handleSubmit = async (e: FormEvent) => {
+	const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
 		if(deal === null){
+			console.log(staticDeals.current[staticDeals.current.length - 1]?.id! + 1)
 			let deal : IDeal = {
-				id: staticDeals.current.length + 1,
+				id: staticDeals.current[staticDeals.current.length - 1]?.id! + 1,
 				date: new Date().toISOString().split('T')[0],
 				text: value,
 				statusId: 1
@@ -28,6 +30,7 @@ export const ModalForm = ( {deal, action, inner} : ModalFormProps) => {
 			action(deal)
 		}
 		setValue('')
+		close()
     }
 
 	const changeHandler = (event : React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value)

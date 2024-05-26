@@ -55,7 +55,7 @@ export const DealsMenager = ( {functions} : DealMenagerProps) => {
 			</form>
 
 			{ sender === identity && <Modal title="Add the deal" onClose={() => close()}>
-				<ModalForm deal={null} action={functions.onCreate} inner={<AiFillFileAdd className="text-xl"/>}/>
+				<ModalForm deal={null} action={functions.onCreate} inner={<AiFillFileAdd className="text-xl"/>} close={close}/>
 			</Modal>}
 		</>
 	)

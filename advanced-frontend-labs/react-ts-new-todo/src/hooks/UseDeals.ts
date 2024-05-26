@@ -6,6 +6,7 @@ import { addDeal, deleteDeal, fetchDeals, updateDeal } from "../services/DealSer
 export const useDeals = () => {
 	const staticDeals = useRef<IDeal[]>([]);
 
+	const [fetch, setFetch] = useState(true)
 	const [deals, setDeals] = useState<IDeal[]>([])
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState('')
@@ -18,6 +19,7 @@ export const useDeals = () => {
 	const onCreate = (deal : IDeal) => {
 		setDeals(prev => [...prev, deal])
 		queryHandler(async () => await addDeal(deal));
+		setFetch(prev => !prev)
 	}
 
 	const onDelete = (id: number) => {
@@ -45,7 +47,7 @@ export const useDeals = () => {
 	}
 
 	const fetchDealsReact = async () => {
-		console.log('fetching')
+		console.log('fetching deals') // doeble useeffect without sense oh yeah
 		const data = await fetchDeals();
 		setDeals(data);
 		staticDeals.current = data;
@@ -53,7 +55,7 @@ export const useDeals = () => {
 
 	useEffect(() => {
 		queryHandler(async () => await fetchDealsReact())
-	}, [])
+	}, [fetch])
 
 
 	return { staticDeals, deals, error, loading, functions:{onCreate, onDelete, onUpdate, onSearch} }
