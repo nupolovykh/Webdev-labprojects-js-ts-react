@@ -28,7 +28,7 @@ app.get('/statuses', (req, res) => {
         if (err) {
             return res.status(400).json({ error: err.message });
         }
-        res.json({ statuses: rows });
+        res.json(rows);
     });
 });
 
