@@ -1,5 +1,6 @@
 export interface IDeal {
-	id?: number,
-	description: string,
-	status: string
+    id?: number;
+    text: string;
+    date: string;
+    statusId: number;
 }
