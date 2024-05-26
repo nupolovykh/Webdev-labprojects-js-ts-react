@@ -2,11 +2,12 @@ import React, { FormEvent, useState } from "react"
 import { IDeal } from "../models/DealModel"
 import axios from "axios"
 
-interface ModalFormUpdateProps {
-	onUpdate : (deal : IDeal) => void
+interface ModalFormProps {
+	deal: IDeal | null
+	action : (deal : IDeal) => void
 }
 
-export const ModalFormUpdate = ( {onUpdate} : ModalFormUpdateProps) => {
+export const ModalForm = ( {deal, action} : ModalFormProps) => {
 	const [value, setValue] = useState('')
 	const [error, setError] = useState('')
 
@@ -18,12 +19,13 @@ export const ModalFormUpdate = ( {onUpdate} : ModalFormUpdateProps) => {
 		}
 		
 		let deal : IDeal = {
-			description: value,
-			status: 'added'
+			date: new Date().toISOString().split('T')[0],
+			text: value,
+			statusId: 1
 		}
 		const send = await axios.post("http://localhost:3001/deals", deal)
 
-        onUpdate(send.data)
+        action(send.data)
 		setValue('')
     };
 
@@ -32,13 +34,14 @@ export const ModalFormUpdate = ( {onUpdate} : ModalFormUpdateProps) => {
 	}
 
 	return (
-		<form className="mb-4 font-montserrat w-full" onSubmit={handleSubmit}>
-			<input type="text" className="outline-none bg-transparent border border-gray-500 p-4 w-[300px] text-white mb-8 rounded placeholder:text-gray-300"
-			placeholder="Input your task here" 
+		<form className="font-montserrat w-full" onSubmit={handleSubmit}>
+			<input type="text" className="outline-none bg-transparent border
+			 border-gray-500 p-4 w-[300px] text-black mb-8 rounded placeholder:text-gray-400"
+			placeholder="input your task here" 
 			onChange={changeHandler}/>
 
 			<button className="bg-gray-500 border-none text-white
-			p-4 cursor-pointer rounded ml-2">+</button>
+			p-4 cursor-pointer rounded ml-2 w-32">+</button>
 		</form>
 	)
 }

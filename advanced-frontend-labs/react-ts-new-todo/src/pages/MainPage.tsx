@@ -4,18 +4,13 @@ import { ErrorMessage } from "../components/Error"
 import { Loader } from "../components/Loader"
 
 export const MainPage = () => {
-	const {deals, loading, error, onCreate, onDelete, onUpdate, onSearch} = useDeals();
+	const {deals, loading, error, functions} = useDeals();
 
 	return (
 		<div className="container mx-auto max-w-2xl pt-5">
 			{error && <ErrorMessage error={error}/>}
 			{loading && <Loader/>}
-			<DealList deals={deals} functions={{
-				onCreate: onCreate,
-				onDelete: onDelete,
-				onUpdate: onUpdate,
-				onSearch: onSearch
-			}}/>
+			<DealList deals={deals} functions={functions}/>
 		</div>
 	)
 }

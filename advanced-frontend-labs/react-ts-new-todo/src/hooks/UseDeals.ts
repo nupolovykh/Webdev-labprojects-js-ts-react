@@ -8,15 +8,15 @@ export const useDeals = () => {
 	const [error, setError] = useState('')
 
 	const onSearch = (str: string) => {
-		setDeals(prev => prev.filter(d => d.description.toLowerCase().includes(str.toLowerCase())));
+		setDeals(prev => prev.filter(d => d.text.toLowerCase().includes(str.toLowerCase())));
 	}
 
 	const onCreate = (deal : IDeal) => {
 		setDeals(prev => [...prev, deal])
 	}
 
-	const onDelete = (deal: IDeal) => {
-		setDeals(prev => prev.filter(d => d.id !== deal.id));
+	const onDelete = (id: number) => {
+		setDeals(prev => prev.filter(d => d.id !== id));
 	}
 	
 	const onUpdate = (deal: IDeal) => {
@@ -45,5 +45,5 @@ export const useDeals = () => {
 	}, [])
 
 
-	return {deals, error, loading, onCreate, onDelete, onUpdate, onSearch}
+	return {deals, error, loading, functions:{onCreate, onDelete, onUpdate, onSearch} }
 }
