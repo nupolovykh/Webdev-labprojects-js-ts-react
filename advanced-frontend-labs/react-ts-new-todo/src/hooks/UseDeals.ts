@@ -1,36 +1,40 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { IDeal } from "../models/DealModel"
-import axios, { AxiosError } from "axios"
+import { AxiosError } from "axios"
+import { addDeal, deleteDeal, fetchDeals, updateDeal } from "../services/DealService"
 
 export const useDeals = () => {
+	const staticDeals = useRef<IDeal[]>([]);
+
 	const [deals, setDeals] = useState<IDeal[]>([])
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState('')
 
 	const onSearch = (str: string) => {
-		setDeals(prev => prev.filter(d => d.text.toLowerCase().includes(str.toLowerCase())));
+		const search = staticDeals.current.filter(d => d.text.toLowerCase().includes(str.toLowerCase()));
+		setDeals(search)
 	}
 
 	const onCreate = (deal : IDeal) => {
 		setDeals(prev => [...prev, deal])
+		queryHandler(async () => await addDeal(deal));
 	}
 
 	const onDelete = (id: number) => {
-		setDeals(prev => prev.filter(d => d.id !== id));
+		setDeals(prev => prev.filter(d => d.id !== id))
+		queryHandler(async () => await deleteDeal(id))
 	}
 	
 	const onUpdate = (deal: IDeal) => {
-		setDeals(prev => prev.map(d => (d.id === deal.id ? deal : d)));
+		setDeals(prev => prev.map(d => (d.id === deal.id ? deal : d)))
+		queryHandler(async () => await updateDeal(deal.id, deal))
 	}
 
-	const fetchDeals = async () => {
+	const queryHandler = async (action : Function) => {
 		try {
 			setError('')
 			setLoading(true)
-
-			const response = await axios.get<IDeal[]>('http://localhost:3001/deals')
-
-			setDeals(response.data);
+			await action();
 			setLoading(false)
 		}
 		catch(ex : unknown) {
@@ -40,10 +44,17 @@ export const useDeals = () => {
 		}
 	}
 
+	const fetchDealsReact = async () => {
+		console.log('fetching')
+		const data = await fetchDeals();
+		setDeals(data);
+		staticDeals.current = data;
+	}
+
 	useEffect(() => {
-		fetchDeals()
+		queryHandler(async () => await fetchDealsReact())
 	}, [])
 
 
-	return {deals, error, loading, functions:{onCreate, onDelete, onUpdate, onSearch} }
+	return { staticDeals, deals, error, loading, functions:{onCreate, onDelete, onUpdate, onSearch} }
 }

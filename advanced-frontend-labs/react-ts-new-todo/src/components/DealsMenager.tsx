@@ -3,6 +3,7 @@ import { IDeal } from "../models/DealModel";
 import { ModalContext } from "../context/ModalContext";
 import { Modal } from "./Modal";
 import { ModalForm } from "./ModalForm";
+import { AiFillFileAdd, AiOutlineFileAdd, AiOutlineSearch } from "react-icons/ai";
 
 interface DealMenagerProps {
 	functions: {
@@ -40,21 +41,21 @@ export const DealsMenager = ( {functions} : DealMenagerProps) => {
 	return (
 		<>
 			<form className="mb-4 font-montserrat w-full" onSubmit={handleSubmit}>
-				<input type="text" className="outline-none bg-transparent border border-gray-500 p-4 text-white mb-4 rounded placeholder:text-gray-300 w-80"
+				<input type="text" className="outline-none bg-transparent border border-gray-500 p-4 text-white mb-4 rounded placeholder:text-gray-300 w-96"
 				placeholder="Input your task here" 
 				onChange={changeHandler}/>
 
 				<button className="bg-gray-500 border-none text-white
-				p-4 cursor-pointer rounded ml-2 w-40"
-				onClick={() => setState(ButtonVariant.search)}>Search</button>
+				p-4 cursor-pointer rounded ml-2 w-28 pb-6"
+				onClick={() => setState(ButtonVariant.search)}>{<AiOutlineSearch className="text-xl"/>}</button>
 
 				<button className="bg-gray-500 border-none text-white
-				p-4 cursor-pointer rounded ml-2 w-28"
-				onClick={() => setState(ButtonVariant.add)}>+</button>
+				p-4 cursor-pointer rounded ml-2 w-24 pb-6"
+				onClick={() => setState(ButtonVariant.add)}>{<AiOutlineFileAdd className="text-xl"/>}</button>
 			</form>
 
 			{ sender === identity && <Modal title="Add the deal" onClose={() => close()}>
-				<ModalForm deal={null} action={functions.onCreate}/>
+				<ModalForm deal={null} action={functions.onCreate} inner={<AiFillFileAdd className="text-xl"/>}/>
 			</Modal>}
 		</>
 	)

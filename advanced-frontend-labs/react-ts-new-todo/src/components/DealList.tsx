@@ -19,9 +19,10 @@ export const DealList = ( {deals, functions} : DealListProps) => {
 			<DealsMenager functions={{onCreate: functions.onCreate, onSearch: functions.onSearch}}/>
 			{deals.map(d => (
 				<Deal
-					key={d.id}
+					key={d.id - 1}
 					deal={d}
 					onUpdate={functions.onUpdate}
+					onDelete={functions.onDelete}
 				/>
 			))}
 		</div>

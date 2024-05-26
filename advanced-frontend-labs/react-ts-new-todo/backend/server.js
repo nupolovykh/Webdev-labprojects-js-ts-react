@@ -59,8 +59,8 @@ app.delete('/status/:id', (req, res) => {
 
 // Create a new deal
 app.post('/deal', (req, res) => {
-    const { date, description, statusId } = req.body;
-    db.run('INSERT INTO deal (date, description, statusId) VALUES (?, ?, ?)', [date, description, statusId], function(err) {
+    const { date, text, statusId } = req.body;
+    db.run('INSERT INTO deal (date, text, statusId) VALUES (?, ?, ?)', [date, text, statusId], function(err) {
         if (err) {
             return res.status(400).json({ error: err.message });
         }
@@ -75,15 +75,14 @@ app.get('/deals', (req, res) => {
             return res.status(400).json({ error: err.message });
         }
         res.json(rows);
-        // res.json({ deals: rows });
     });
 });
 
 // Update a deal
 app.put('/deal/:id', (req, res) => {
     const { id } = req.params;
-    const { date, description, statusId } = req.body;
-    db.run('UPDATE deal SET date = ?, description = ?, statusId = ? WHERE id = ?', [date, description, statusId, id], function(err) {
+    const { date, text, statusId } = req.body;
+    db.run('UPDATE deal SET date = ?, text = ?, statusId = ? WHERE id = ?', [date, text, statusId, id], function(err) {
         if (err) {
             return res.status(400).json({ error: err.message });
         }
