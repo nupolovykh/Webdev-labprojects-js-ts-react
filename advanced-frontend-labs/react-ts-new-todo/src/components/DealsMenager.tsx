@@ -4,6 +4,8 @@ import { ModalContext } from "../context/ModalContext";
 import { Modal } from "./Modal";
 import { ModalForm } from "./ModalForm";
 import { AiFillFileAdd, AiOutlineFileAdd, AiOutlineSearch } from "react-icons/ai";
+import { SortState } from "../context/SortContext";
+import { SortDropDown } from "./SortDropDown";
 
 interface DealMenagerProps {
 	functions: {
@@ -46,13 +48,17 @@ export const DealsMenager = ( {functions} : DealMenagerProps) => {
 				onChange={changeHandler}/>
 
 				<button className="bg-gray-500 border-none text-white
-				p-4 cursor-pointer rounded ml-2 w-28 pb-6"
+				p-4 cursor-pointer rounded ml-2 w-auto pb-6"
 				onClick={() => setState(ButtonVariant.search)}>{<AiOutlineSearch className="text-xl"/>}</button>
 
 				<button className="bg-gray-500 border-none text-white
-				p-4 cursor-pointer rounded ml-2 w-24 pb-6"
+				p-4 cursor-pointer rounded ml-2 w-auto pb-6"
 				onClick={() => setState(ButtonVariant.add)}>{<AiOutlineFileAdd className="text-xl"/>}</button>
 			</form>
+
+			<SortState>
+				<SortDropDown />
+			</SortState>
 
 			{ sender === identity && <Modal title="Add the deal" onClose={() => close()}>
 				<ModalForm deal={null} action={functions.onCreate} inner={<AiFillFileAdd className="text-xl"/>} close={close}/>
