@@ -1,0 +1,52 @@
+[
+	{
+		"id": 1,
+		"description": "Review project proposal",
+		"status": "in progress"
+	},
+	{
+		"id": 2,
+		"description": "Discuss budget with team",
+		"status": "pending"
+	},
+	{
+		"id": 3,
+		"description": "Prepare presentation slides",
+		"status": "in progress"
+	},
+	{
+		"id": 4,
+		"description": "Client meeting at 2:00 PM",
+		"status": "upcoming"
+	},
+	{
+		"id": 5,
+		"description": "Follow up on email responses",
+		"status": "pending"
+	},
+	{
+		"id": 6,
+		"description": "Project testing phase",
+		"status": "in progress"
+	},
+	{
+		"id": 7,
+		"description": "Team collaboration meeting",
+		"status": "upcoming"
+	},
+	{
+		"id": 8,
+		"description": "Review and approve project plan",
+		"status": "pending"
+	},
+	{
+		"id": 9,
+		"description": "Task assignment to team members",
+		"status": "in progress"
+	},
+	{
+		"id": 10,
+		"description": "Client feedback analysis",
+		"status": "pending"
+	}
+]
