@@ -1,6 +1,6 @@
 ## REPOSITORY HAS THE NESTING REP-NODE-JS-BACKEND, THIS IS THE REASON OF PREDOMINANCE JS
 
-### LAST PASSED LABORATORY WORK -> LAB 10
+### LAST PASSED LABORATORY WORK -> LAB 11
 
 ### [0. HTML](javascript-todo/public)
 
@@ -81,7 +81,7 @@
 * Задания на fetch
 * Задания на React.query
 
-### 11. React + Typescript:
+### [11. React + Typescript](preparing/react-ts-new-todo)
 
 * TODO-list на React
 
