@@ -1,7 +1,9 @@
-```markdown
-# Todo-List React TypeScript App
+# Todo-List React-TypeScript => P.S. README.md by chat-gpt4o (усё условно)
 
-A simple and efficient Todo-List application built with React and TypeScript. This project showcases modern frontend development practices, including state management with hooks, custom hooks, context API, and CRUD operations with a backend server.
+A simple and efficient Todo-List application built with React and TypeScript.
+This project showcases modern frontend development practices, including state
+management with hooks, custom hooks, context API, and CRUD operations with a
+backend server.
 
 ## Features
 
@@ -29,18 +31,17 @@ A simple and efficient Todo-List application built with React and TypeScript. Th
    git clone https://github.com/your-username/todo-list-react-ts.git
    cd todo-list-react-ts
    ```
-
-2. **Install the dependencies:**
+3. **Install the dependencies:**
    ```bash
    npm install
    ```
 
-3. **Run the development server:**
+4. **Run the development server:**
    ```bash
    npm start
    ```
 
-4. **Start the backend server:**
+5. **Start the backend server:**
    ```bash
    node server.js
    ```
@@ -49,9 +50,11 @@ A simple and efficient Todo-List application built with React and TypeScript. Th
 
 - `src/`: Contains the main application code
   - `components/`: React components
+  - `assets/`: Assets for app
   - `context/`: Context API files
   - `hooks/`: Custom hooks
   - `models/`: TypeScript models
+  - `pages/`: Pages of application
   - `services/`: Services for CRUD operations
 - `public/`: Public assets
 - `server.js`: Backend server with Node.js and SQLite
@@ -89,16 +92,3 @@ A simple and efficient Todo-List application built with React and TypeScript. Th
    ```
 
 2. **Deploy the build folder to your preferred hosting service.**
-
-## Contributing
-
-Contributions are welcome! Please fork the repository and submit a pull request.
-
-## License
-
-This project is licensed under the MIT License.
-```
-
-This `README.md` file provides a clear and concise overview of the project, including its features, tech stack, installation instructions, usage, and more. It helps new developers understand how to get started and contribute to the project.
-
-P.S. README.md by chat-gpt4o
