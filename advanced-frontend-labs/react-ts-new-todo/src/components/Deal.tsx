@@ -8,9 +8,9 @@ import { IStatus } from "../models/StatusModel"
 import { DropDown } from "./Dropdown"
 
 interface DealProps {
-	deal: IDeal,
-	statuses: IStatus[],
-	onUpdateDeal : (deal : IDeal) => void,
+	deal: IDeal
+	statuses: IStatus[]
+	onUpdateDeal : (deal : IDeal) => void
 	onDelete : (id : number) => void
 }
 
@@ -23,8 +23,8 @@ export const Deal = ( {deal, statuses, onUpdateDeal, onDelete} : DealProps) => {
 				<p className="font-montserrat max-w-60 overflow-x-auto">{deal.text}</p>
 				<div className="flex items-center gap-x-4">
 					<span className="font-montserrat text-xs align-text-bottom">{deal.date}</span> {/* Very weird logic sub with modal */}
-					<AiFillEdit className="text-xl" onClick={() => open(deal)}/>
-					<AiFillDelete className="text-xl" onClick={() => onDelete(deal.id)}/>
+					<AiFillEdit className="text-xl cursor-pointer" onClick={() => open(deal)}/>
+					<AiFillDelete className="text-xl cursor-pointer" onClick={() => onDelete(deal.id)}/>
 					< DropDown onUpdate={onUpdateDeal} statuses={statuses} deal={deal} /> {/* Very handsome but hmm */}
 				</div>
 			</div>

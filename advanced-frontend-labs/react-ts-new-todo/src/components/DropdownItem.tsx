@@ -1,9 +1,9 @@
 import { IDeal } from "../models/DealModel"
 
 interface DropdownItemProps {
-	statusId: number,
-	str: string,
-	deal: IDeal,
+	statusId: number
+	str: string
+	deal: IDeal
 	onUpdate: (deal : IDeal) => void
 }
 

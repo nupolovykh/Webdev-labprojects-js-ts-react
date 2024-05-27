@@ -35,24 +35,18 @@ export const SortState = ({ children } : {children: React.ReactNode}) => {
 	}
 
 	const byTextDesc = () => {
-		if(type !== typeOfSort.none){
-			setType(typeOfSort.byTextDesc)
-			sort.sortByTextDesc()
-		}
+		setType(typeOfSort.byTextDesc)
+		sort.sortByTextDesc()
 	}
 
 	const byDateAsc = () => {
-		if(type !== typeOfSort.none){
-			setType(typeOfSort.byDateAsc)
-			sort.sortByDateAsc()
-		}
+		setType(typeOfSort.byDateAsc)
+		sort.sortByDateAsc()
 	}
 
 	const byDateDesc = () => {
-		if(type !== typeOfSort.none){
-			setType(typeOfSort.byDateDesc)
-			sort.sortByDateDesc()
-		}
+		setType(typeOfSort.byDateDesc)
+		sort.sortByDateDesc()
 	}
 
 	return (
