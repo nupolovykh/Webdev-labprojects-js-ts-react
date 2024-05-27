@@ -16,6 +16,46 @@ export const useDeals = () => {
 		setDeals(search)
 	}
 
+	const sortByTextAsc = () => {
+		const sortedDeals = [...deals].sort((a, b) => {
+			const textA = a.text.toLowerCase();
+			const textB = b.text.toLowerCase();
+			if (textA < textB) return -1;
+			else if (textA > textB) return 1;
+			return 0;
+		});
+		setDeals(sortedDeals);
+	}
+
+	const sortByTextDesc = () => {
+		const sort = staticDeals.current.sort((a, b) => {
+			const textA = a.text.toLowerCase()
+			const textB = b.text.toLowerCase()
+			if(textA > textB) return -1;
+			else if(textA < textB) return 1;
+			return 0;
+		})
+		setDeals(sort)
+	}
+
+	const sortByDateAsc = () => {
+		const sort = staticDeals.current.sort((a, b) => {
+			const dateA = new Date(a.date).getTime()
+			const dateB = new Date(b.date).getTime()
+			return dateA - dateB
+		})
+		setDeals(sort)
+	}
+
+	const sortByDateDesc = () => {
+		const sort = staticDeals.current.sort((a, b) => {
+			const dateA = new Date(a.date).getTime()
+			const dateB = new Date(b.date).getTime()
+			return dateB - dateA
+		})
+		setDeals(sort)
+	}
+
 	const onCreate = (deal : IDeal) => {
 		setDeals(prev => [...prev, deal])
 		queryHandler(async () => await addDeal(deal));
@@ -50,7 +90,7 @@ export const useDeals = () => {
 		console.log('fetching deals') // doeble useeffect without sense oh yeah
 		const data = await fetchDeals();
 		setDeals(data);
-		staticDeals.current = data;
+		staticDeals.current = [...data];
 	}
 
 	useEffect(() => {
@@ -58,5 +98,5 @@ export const useDeals = () => {
 	}, [fetch])
 
 
-	return { staticDeals, deals, error, loading, functions:{onCreate, onDelete, onUpdate, onSearch} }
+	return { staticDeals, deals, error, loading, functions:{onCreate, onDelete, onUpdate, onSearch}, sort: {sortByDateAsc, sortByDateDesc, sortByTextAsc, sortByTextDesc} }
 }

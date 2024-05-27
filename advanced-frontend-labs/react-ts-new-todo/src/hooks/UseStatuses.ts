@@ -23,10 +23,10 @@ export const useStatuses = () => {
 	}
 
 	const fetchStatusesReact = async () => {
-		console.log('fetching statuses') // double useeffect without sense oh yeah
+		//console.log('fetching statuses') // double useeffect without sense oh yeah
 		const data = await fetchStatuses();
 		setStatuses(data);
-		console.log(data)
+		//console.log(data)
 	}
 
 	useEffect(() => {
