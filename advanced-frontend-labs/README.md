@@ -81,11 +81,11 @@
 * Задания на fetch
 * Задания на React.query
 
-### [11. React + Typescript](preparing/react-ts-new-todo)
+### [11. React + Typescript](react-ts-new-todo)
 
 * TODO-list на React
 
-### 12. Тестирование: react-testing-library
+### [12. Тестирование: react-testing-library](react-ts-new-todo/src)
 
 * Написать тесты для своего веб-приложения (клиентской его части)
 
