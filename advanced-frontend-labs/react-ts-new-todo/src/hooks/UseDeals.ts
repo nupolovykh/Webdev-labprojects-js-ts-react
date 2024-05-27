@@ -17,18 +17,18 @@ export const useDeals = () => {
 	}
 
 	const sortByTextAsc = () => {
-		const sortedDeals = [...deals].sort((a, b) => {
+		const sort = [...staticDeals.current].sort((a, b) => {
 			const textA = a.text.toLowerCase();
 			const textB = b.text.toLowerCase();
 			if (textA < textB) return -1;
 			else if (textA > textB) return 1;
 			return 0;
 		});
-		setDeals(sortedDeals);
+		setDeals(sort);
 	}
 
 	const sortByTextDesc = () => {
-		const sort = staticDeals.current.sort((a, b) => {
+		const sort = [...staticDeals.current].sort((a, b) => {
 			const textA = a.text.toLowerCase()
 			const textB = b.text.toLowerCase()
 			if(textA > textB) return -1;
@@ -39,7 +39,7 @@ export const useDeals = () => {
 	}
 
 	const sortByDateAsc = () => {
-		const sort = staticDeals.current.sort((a, b) => {
+		const sort = [...staticDeals.current].sort((a, b) => {
 			const dateA = new Date(a.date).getTime()
 			const dateB = new Date(b.date).getTime()
 			return dateA - dateB
@@ -48,7 +48,7 @@ export const useDeals = () => {
 	}
 
 	const sortByDateDesc = () => {
-		const sort = staticDeals.current.sort((a, b) => {
+		const sort = [...staticDeals.current].sort((a, b) => {
 			const dateA = new Date(a.date).getTime()
 			const dateB = new Date(b.date).getTime()
 			return dateB - dateA

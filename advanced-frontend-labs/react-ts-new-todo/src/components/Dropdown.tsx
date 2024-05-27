@@ -5,8 +5,8 @@ import { IDeal } from '../models/DealModel';
 import { DropdownItem } from './DropdownItem';
 
 interface DropDownProps {
-	statuses: IStatus[],
-    deal: IDeal,
+	statuses: IStatus[]
+    deal: IDeal
 	onUpdate : (deal : IDeal) => void
 }
 

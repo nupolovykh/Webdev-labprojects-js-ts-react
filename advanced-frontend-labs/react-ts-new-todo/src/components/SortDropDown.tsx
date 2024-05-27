@@ -1,12 +1,19 @@
 import { useContext, useState } from 'react';
 import { IoIosArrowDropdown } from "react-icons/io";
-import { SortContext } from '../context/SortContext';
 import { SortDropDownItem } from './SortDropDownItem';
 
+interface SortDropDownProps{
+    sort: {
+		sortByDateAsc: () => void
+		sortByDateDesc: () => void
+		sortByTextAsc: () => void
+		sortByTextDesc: () => void
+	}
+}
 
-export const SortDropDown = () => {
+
+export const SortDropDown = ({sort} : SortDropDownProps) => {
     const [isDropdownOpen, setDropDownOpen] = useState(false);
-    const {byDateAsc, byDateDesc, byTextAsc, byTextDesc} = useContext(SortContext)
 
     const toggleDropdown = () => {
         setDropDownOpen(!isDropdownOpen);
@@ -18,7 +25,7 @@ export const SortDropDown = () => {
                 id="dropdownHoverButton"
                 data-dropdown-toggle="dropdownHover"
                 data-dropdown-trigger="hover"
-                className="text-white bg-gray-700 hover:bg-gray-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800 w-36"
+                className="text-white hover:bg-gray-600 font-medium rounded-lg text-sm text-center inline-flex items-center dark:bg-gray-500 dark:hover:bg-gray-600 dark:focus:ring-gray-800 w-auto bg-gray-500 border-none p-4 cursor-pointer ml-2 h-[58px]"
                 type="button"
                 onClick={toggleDropdown}
             >
@@ -35,10 +42,10 @@ export const SortDropDown = () => {
                         className="py-2 text-sm text-gray-700 dark:text-gray-200"
                         aria-labelledby="dropdownHoverButton"
                     >
-                        < SortDropDownItem str='text - asc' action={byTextAsc} />
-                        < SortDropDownItem str='text - desc' action={byTextDesc} />
-                        < SortDropDownItem str='date - asc' action={byDateAsc} />
-                        < SortDropDownItem str='date - deac' action={byDateDesc} />
+                        < SortDropDownItem str='text - asc' action={sort.sortByTextAsc} />
+                        < SortDropDownItem str='text - desc' action={sort.sortByTextDesc} />
+                        < SortDropDownItem str='date - asc' action={sort.sortByDateAsc} />
+                        < SortDropDownItem str='date - deac' action={sort.sortByDateDesc} />
                     </ul>
                 </div>
             )}

@@ -1,5 +1,5 @@
 interface SortDropDownItemProps {
-	str: string,
+	str: string
 	action: () => void
 }
 
