@@ -8,7 +8,6 @@ interface DropdownItemProps {
 }
 
 export const DropdownItem = ( {statusId, str, deal, onUpdate } : DropdownItemProps) => {
-
 	const statusHandler = () => {
 		deal.statusId = statusId 
 		onUpdate(deal)
@@ -16,12 +15,9 @@ export const DropdownItem = ( {statusId, str, deal, onUpdate } : DropdownItemPro
 
 	return (
 		<li>
-			<button
-				onClick={statusHandler}
+			<button onClick={statusHandler}
 				className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-			>
-				{str}
-			</button>
+			> {str} </button>
 		</li>
 	)
 }

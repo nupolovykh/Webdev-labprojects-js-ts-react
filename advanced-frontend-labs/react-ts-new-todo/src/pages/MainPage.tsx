@@ -1,19 +1,26 @@
 import { DealList } from "../components/DealList"
-import { useDeals } from "../hooks/UseDeals"
 import { ErrorMessage } from "../components/Error"
 import { GeniousLoader } from "../components/GeniousLoader"
-import { useStatuses } from "../hooks/UseStatuses"
 import { SimpleLoader } from "../components/SimpleLoader"
+import { DealsProvider, useDealsContext } from "../context/DealsContext"
 
 export const MainPage = () => {
-	const {deals, loading, error, functions, sort} = useDeals();
-	const { statuses } = useStatuses();
-
 	return (
-		<div className="container mx-auto max-w-2xl pt-5">
-			{error && <ErrorMessage error={error}/>}
-			{loading && <SimpleLoader/>}
-			<DealList deals={deals} functions={functions} statuses={statuses} sort={sort}/>
-		</div>
+		<DealsProvider>
+			<div className="container mx-auto max-w-2xl pt-5">
+				< MainPageContent />
+			</div>
+		</DealsProvider>
 	)
 }
+  
+const MainPageContent = () => {
+	const { loading, error } = useDealsContext();
+	return (
+		<>
+			{error && <ErrorMessage error={error} />}
+			{loading && <SimpleLoader />}
+			<DealList />
+		</>
+	);
+};

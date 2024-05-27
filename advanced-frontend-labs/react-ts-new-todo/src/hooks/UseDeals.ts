@@ -56,7 +56,7 @@ export const useDeals = () => {
 		setDeals(sort)
 	}
 
-	const onCreate = (deal : IDeal) => {
+	const onCreate = (deal : IDeal) => {	//Must remove refetching from the server where possible
 		setDeals(prev => [...prev, deal])
 		queryHandler(async () => await addDeal(deal));
 		setFetch(prev => !prev)
