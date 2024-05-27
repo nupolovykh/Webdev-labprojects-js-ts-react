@@ -22,3 +22,8 @@ export const deleteDeal = async (id: number): Promise<number> => {
 	const response = await axios.delete(`${API_URL}/deal/${id}`);
 	return response.data.changes;
 }
+
+export const getNextId = async (): Promise<number> => {
+	const response = await axios.post<{ nextId: number }>(`${API_URL}/deal/next-id`);
+	return response.data.nextId;
+}

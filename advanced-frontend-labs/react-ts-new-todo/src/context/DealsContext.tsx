@@ -3,20 +3,21 @@ import { useDeals } from "../hooks/UseDeals";
 import { IDeal } from "../models/DealModel";
 
 interface IDealsContextProps {
-	deals: IDeal[];
-	loading: boolean;
-	error: string;
+	deals: IDeal[]
+	loading: boolean
+	nextId: number | null
+	error: string
 	functions: {
-		onCreate: (deal: IDeal) => void;
-		onDelete: (id: number) => void;
-		onUpdate: (deal: IDeal) => void;
-		onSearch: (str: string) => void;
+		onCreate: (deal: IDeal) => void
+		onDelete: (id: number) => void
+		onUpdate: (deal: IDeal) => void
+		onSearch: (str: string) => void
 	};
 	sort: {
-		sortByTextAsc: () => void;
-		sortByTextDesc: () => void;
-		sortByDateAsc: () => void;
-		sortByDateDesc: () => void;
+		sortByTextAsc: () => void
+		sortByTextDesc: () => void
+		sortByDateAsc: () => void
+		sortByDateDesc: () => void
 	};
 }
 

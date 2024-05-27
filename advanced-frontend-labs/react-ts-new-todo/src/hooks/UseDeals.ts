@@ -1,65 +1,44 @@
 import { useEffect, useRef, useState } from "react"
 import { IDeal } from "../models/DealModel"
 import { AxiosError } from "axios"
-import { addDeal, deleteDeal, fetchDeals, updateDeal } from "../services/DealService"
+import { addDeal, deleteDeal, fetchDeals, getNextId, updateDeal } from "../services/DealService"
 
 export const useDeals = () => {
-	const staticDeals = useRef<IDeal[]>([]);
+	const [nextId, setNextId] = useState<number | null>(null)
 
-	const [fetch, setFetch] = useState(true)
 	const [deals, setDeals] = useState<IDeal[]>([])
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState('')
 
 	const onSearch = (str: string) => {
-		const search = staticDeals.current.filter(d => d.text.toLowerCase().includes(str.toLowerCase()));
+		const search = [...deals].filter(d => d.text.toLowerCase().includes(str.toLowerCase()));
 		setDeals(search)
 	}
 
 	const sortByTextAsc = () => {
-		const sort = [...staticDeals.current].sort((a, b) => {
-			const textA = a.text.toLowerCase();
-			const textB = b.text.toLowerCase();
-			if (textA < textB) return -1;
-			else if (textA > textB) return 1;
-			return 0;
-		});
-		setDeals(sort);
+		const sorted = [...deals].sort((a, b) => a.text.localeCompare(b.text));
+		setDeals(sorted);
 	}
 
 	const sortByTextDesc = () => {
-		const sort = [...staticDeals.current].sort((a, b) => {
-			const textA = a.text.toLowerCase()
-			const textB = b.text.toLowerCase()
-			if(textA > textB) return -1;
-			else if(textA < textB) return 1;
-			return 0;
-		})
-		setDeals(sort)
+		const sorted = [...deals].sort((a, b) => b.text.localeCompare(a.text));
+		setDeals(sorted)
 	}
 
 	const sortByDateAsc = () => {
-		const sort = [...staticDeals.current].sort((a, b) => {
-			const dateA = new Date(a.date).getTime()
-			const dateB = new Date(b.date).getTime()
-			return dateA - dateB
-		})
-		setDeals(sort)
+		const sorted = [...deals].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+		setDeals(sorted)
 	}
 
 	const sortByDateDesc = () => {
-		const sort = [...staticDeals.current].sort((a, b) => {
-			const dateA = new Date(a.date).getTime()
-			const dateB = new Date(b.date).getTime()
-			return dateB - dateA
-		})
-		setDeals(sort)
+		const sorted = [...deals].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+		setDeals(sorted)
 	}
 
 	const onCreate = (deal : IDeal) => {	//Must remove refetching from the server where possible
 		setDeals(prev => [...prev, deal])
+		setNextId(deal.id + 1)
 		queryHandler(async () => await addDeal(deal));
-		setFetch(prev => !prev)
 	}
 
 	const onDelete = (id: number) => {
@@ -77,26 +56,34 @@ export const useDeals = () => {
 			setError('')
 			setLoading(true)
 			await action();
-			setLoading(false)
 		}
 		catch(ex : unknown) {
 			const error = ex as AxiosError
+			setError(error.message);
+		}
+		finally {
 			setLoading(false)
-			setError(error.message)
 		}
 	}
 
 	const fetchDealsReact = async () => {
-		console.log('fetching deals') // doeble useeffect without sense oh yeah
+		console.log('fetching deals') // doeble useEffect without sense oh yeah => because restric.mode~
 		const data = await fetchDeals();
 		setDeals(data);
-		staticDeals.current = [...data];
+
+		if(nextId === null){
+			console.log('fetch nextId')
+			const id = await getNextId();
+      		setNextId(id + 1);
+		}
 	}
 
 	useEffect(() => {
 		queryHandler(async () => await fetchDealsReact())
-	}, [fetch])
+	}, [nextId])
 
 
-	return { staticDeals, deals, error, loading, functions:{onCreate, onDelete, onUpdate, onSearch}, sort: {sortByDateAsc, sortByDateDesc, sortByTextAsc, sortByTextDesc} }
+	return { deals, error, loading, nextId, 
+	functions:{onCreate, onDelete, onUpdate, onSearch}, 
+	sort: {sortByDateAsc, sortByDateDesc, sortByTextAsc, sortByTextDesc} }
 }

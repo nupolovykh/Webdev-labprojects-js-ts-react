@@ -55,6 +55,23 @@ app.delete('/status/:id', (req, res) => {
     });
 });
 
+// Get the next ID of the status table
+app.post('/status/next-id', (req, res) => {
+    db.run('INSERT INTO status (name) VALUES (?)', [''], function(err) {
+        if (err) {
+            return res.status(400).json({ error: err.message });
+        }
+        const nextId = this.lastID;
+        // Clean up the placeholder entry
+        db.run('DELETE FROM status WHERE id = ?', [nextId], (err) => {
+        if (err) {
+            return res.status(400).json({ error: err.message });
+        }
+            res.json({ nextId });
+        });
+    });
+});
+
 // CRUD operations for 'deal'
 
 // Create a new deal
@@ -98,6 +115,23 @@ app.delete('/deal/:id', (req, res) => {
             return res.status(400).json({ error: err.message });
         }
         res.json({ changes: this.changes });
+    });
+});
+
+// Get the next ID of the deal table
+app.post('/deal/next-id', (req, res) => {
+    db.run('INSERT INTO deal (date, text, statusId) VALUES (?, ?, ?)', ['', '', 0], function(err) {
+        if (err) {
+            return res.status(400).json({ error: err.message });
+        }
+        const nextId = this.lastID;
+        // Clean up the placeholder entry
+        db.run('DELETE FROM deal WHERE id = ?', [nextId], (err) => {
+        if (err) {
+            return res.status(400).json({ error: err.message });
+        }
+            res.json({ nextId });
+        });
     });
 });
 

@@ -1,6 +1,6 @@
 import React, { FormEvent, useState } from "react"
 import { IDeal } from "../models/DealModel"
-import { useDeals } from "../hooks/UseDeals"
+import { useDealsContext } from "../context/DealsContext"
 
 interface ModalFormProps {
 	deal: IDeal | null
@@ -11,14 +11,14 @@ interface ModalFormProps {
 
 export const ModalForm = ( {deal, action, inner, close} : ModalFormProps) => {
 	const [value, setValue] = useState('')
-	const { staticDeals } = useDeals();
+	const { nextId } = useDealsContext();
 
 	const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
 		if(deal === null){
-			console.log(staticDeals.current[staticDeals.current.length - 1]?.id! + 1)
+			console.log(nextId)
 			let deal : IDeal = {
-				id: staticDeals.current[staticDeals.current.length - 1]?.id! + 1,
+				id: nextId!,
 				date: new Date().toISOString().split('T')[0],
 				text: value,
 				statusId: 1

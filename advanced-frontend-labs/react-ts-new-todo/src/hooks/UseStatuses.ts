@@ -23,16 +23,14 @@ export const useStatuses = () => {
 	}
 
 	const fetchStatusesReact = async () => {
-		//console.log('fetching statuses') // double useeffect without sense oh yeah
+		console.log('fetching statuses') // double useEffect without sense oh yeah => restrict.mode~
 		const data = await fetchStatuses();
 		setStatuses(data);
-		//console.log(data)
 	}
 
 	useEffect(() => {
 		queryHandler(async () => await fetchStatusesReact())
 	}, [])
-
 
 	return { statuses, error, loading}
 }
