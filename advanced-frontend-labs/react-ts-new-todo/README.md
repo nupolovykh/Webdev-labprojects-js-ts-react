@@ -1,4 +1,4 @@
-# Todo-List React-TypeScript => P.S. README.md by chat-gpt4o (усё условно)
+# Todo-List React-TypeScript => P.S. README.md by chat-gpt4o
 
 A simple and efficient Todo-List application built with React and TypeScript.
 This project showcases modern frontend development practices, including state
@@ -28,22 +28,24 @@ backend server.
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/todo-list-react-ts.git
-   cd todo-list-react-ts
+   git clone https://github.com/DonutsEmperor/WebDevelopment-laboratory-works-plus-react-project.git
+   cd react-ts-new-todo
    ```
 3. **Install the dependencies:**
    ```bash
    npm install
    ```
 
-4. **Run the development server:**
+4. **Run the backend server:**
    ```bash
-   npm start
+   cd backend
+   npm run start
    ```
 
-5. **Start the backend server:**
+5. **Start the development server:**
    ```bash
-   node server.js
+   cd ..
+   npm run start
    ```
 
 ## Folder Structure
@@ -57,7 +59,7 @@ backend server.
   - `pages/`: Pages of application
   - `services/`: Services for CRUD operations
 - `public/`: Public assets
-- `server.js`: Backend server with Node.js and SQLite
+- `backend/`: Backend server with Node.js and SQLite
 - `tailwind.config.js`: Tailwind CSS configuration
 - `webpack.config.js`: Webpack configuration
 
@@ -92,3 +94,6 @@ backend server.
    ```
 
 2. **Deploy the build folder to your preferred hosting service.**
+
+![image](https://github.com/DonutsEmperor/WebDevelopment-laboratory-works-plus-react-project/assets/96892429/90fba81b-0bfb-4fca-ab94-c590d41d54a1)
+
