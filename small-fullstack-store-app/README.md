@@ -1,17 +1,41 @@
-Появление мощных инструментов на базе искусственного интеллекта, таких как ChatGPT, действительно меняет ландшафт программирования и IT-индустрии в целом. Однако это не значит, что начинающим программистам нет места в этом мире. Вот несколько советов, как адаптироваться и использовать эти изменения в свою пользу:
+# React product catalog + GPT-era auth demo
 
-1. **Учитесь работать с ИИ-инструментами**: Вместо того чтобы видеть ИИ как конкурента, воспринимайте его как помощника. Использование ИИ для автоматизации рутинных задач, поиска ошибок, написания документации и т.д. может значительно повысить вашу продуктивность и эффективность.
+> 🚀 **Portfolio Project** — a standalone app, not discrete lab exercises.
 
-2. **Углубляйте знания**: ИИ хорош в решении типичных задач, но сложные и нетривиальные проблемы всё ещё требуют глубокого понимания и творческого подхода. Погружайтесь в изучение алгоритмов, структур данных, парадигм программирования и других фундаментальных концепций.
+**Tech Stack:** React, TypeScript, React Router, Axios, Tailwind CSS · Node.js/Express + SQLite backend
 
-3. **Развивайте смежные навыки**: Помимо чистого программирования, развивайте навыки в области проектного менеджмента, дизайна, аналитики данных и других смежных областях. Это сделает вас более ценным специалистом.
+A small product-catalog frontend (pulling live data from the [Fake Store API](https://fakestoreapi.com)) paired with a custom login/registration flow backed by a local Express + SQLite server (`gpt-backend/`) instead of a third-party auth provider.
 
-4. **Фокусируйтесь на комплексных проектах**: ИИ может помочь с написанием кода, но он не заменит человека в создании сложных архитектур, понимании потребностей пользователей и управлении проектами. Сосредоточьтесь на развитии навыков в этих областях.
+## Structure
 
-5. **Будьте в курсе новых технологий**: Технологии продолжают развиваться, и знание современных трендов и инструментов даст вам конкурентное преимущество. Следите за новостями, посещайте конференции и участвуйте в сообществах разработчиков.
+```
+src/
+  pages/          ProductPage, AboutPage
+  components/     Navigation, Product, CreateProduct, Modal, Loader, Error
+  gpt-components/ LoginComponent, RegisComponent — talk to gpt-backend/
+  hooks/          useProducts (fetches from fakestoreapi.com)
+gpt-backend/      Express + SQLite server handling /register and /login
+```
 
-6. **Создавайте собственные проекты**: Работайте над своими проектами, это не только поможет вам развивать практические навыки, но и создаст портфолио, которое можно показать потенциальным работодателям.
+## Running it
 
-7. **Развивайте soft skills**: Навыки общения, командной работы, решения конфликтов и другие soft skills становятся всё более важными. ИИ не может заменить человеческое общение и понимание, поэтому умение эффективно взаимодействовать с коллегами будет ценным преимуществом.
+```bash
+# backend (from gpt-backend/, so its relative db path resolves correctly)
+cd gpt-backend && npm install && node server.js
 
-В мире, где ИИ становится всё более мощным инструментом, ваша уникальность, творчество и способность адаптироваться остаются ключевыми качествами. Используйте ИИ как инструмент для своего роста и развития, и вы сможете найти своё место в быстро меняющемся технологическом мире.
+# frontend (from the project root, in another terminal)
+npm install && npm start
+```
+
+The frontend proxies `/register` and `/login` to `http://localhost:5000` (see the `proxy` field in `package.json`); the product list requires outbound internet access to `fakestoreapi.com`.
+
+## Screens
+
+| Screen | Preview |
+|---|---|
+| Product catalog (`/`) — cards fetched from the Fake Store API | <img src="results/screenshot-1.png" width="480"> |
+| Registration (`/register`) — talks to the local `gpt-backend/` | <img src="results/screenshot-2.png" width="360"> |
+
+`/login` mirrors the registration form; `/about` is a placeholder page (lorem ipsum) not pictured here.
+
+**Note on the catalog screenshot:** this repo's docs are built in a sandboxed CI environment whose outbound network access is limited to an explicit allowlist (npm/PyPI registries, GitHub raw content) — `fakestoreapi.com` isn't reachable from it. The screenshot above mocks the API response with illustrated product art instead of real photos so the screenshot doesn't show a network-error page; running the app normally (`npm start`, with regular internet access) pulls real product data and photos from the live API.
