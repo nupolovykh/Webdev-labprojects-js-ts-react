@@ -1,0 +1,39 @@
+.label {
+    display: flex;
+    justify-content: space-around;
+}
+
+h1 {
+    margin-left: 10px;
+    font-size: 30px;
+    font-weight: 600;
+    color: rgb(68, 68, 250);
+}
+
+h2 {
+    border-top: 3px solid;
+    border-bottom: 1px solid;
+    margin-left: 10px;
+    border-color: gray;
+    padding: 8px;
+}
+
+h3 {
+    font-weight: lighter;
+}
+
+.buttons {
+    margin: 50px 0 0 10px;
+}
+
+button {
+    margin-right: 10px;
+    height: 60px;
+    width: 200px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    border-radius: 3%;
+    background: linear-gradient(to bottom, #61bec5, #3538ee);
+}

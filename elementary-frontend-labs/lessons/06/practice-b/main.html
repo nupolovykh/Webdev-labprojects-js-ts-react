@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Узнай свой вес</title>
+  <style>
+    body {
+      background-color: rgb(255, 194, 194);
+    }
+
+    .main-box {
+      margin-top: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: rgb(241, 119, 119);
+      padding: 10px;
+      border-radius: 5%;
+    }
+
+    .table {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .buttons {
+      margin-top: 25px;
+    }
+
+    p {
+      font-size: 22px;
+    }
+
+    button {
+      background-color: rgb(255, 255, 255);
+      border: 2px solid black;
+      border-radius: 4px;
+      cursor: pointer;
+
+      padding: 10px 20px;
+      margin-left: 10px;
+
+      text-align: center;
+      font-size: 18px;
+      font-family: 'Russo One', sans-serif;
+    }
+
+    .left {
+      margin-top: 200px;
+      width: 250px;
+      height: 250px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="table">
+    <img class="left" src="pink.jpg">
+    <div class="main-box">
+      <h1>"Узнай свой вес"</h1>
+      <p>Введите свой вес в килограммах:</p>
+      <input type="text" id="weight">
+      <div class="buttons">
+        <button onclick="calculateWeight()">Узнать вес в пудах и фунтах</button>
+        <button onclick="calculateWeightAnimals()">Узнать вес в бегемотах и булочках</button>
+      </div>
+      <p id="result"> Здесь будет указан ответ</p>
+      <!-- <p><a href="/">Вернуться на главную страницу</a></p> -->
+    </div>
+    <img class="left" src="pink.jpg">
+  </div>
+  <script>
+    function calculateWeight() {
+      var weightInKg = parseInt(document.getElementById("weight").value);
+      var pudy = Math.trunc(weightInKg / 16);
+      var funty = Math.trunc((weightInKg % 16) * 10 / 4);
+      var result = "Ваш вес в пудах и фунтах: " + pudy + " пудов " + funty + " фунтов";
+      // alert(result);
+      document.getElementById("result").innerHTML = result;
+    }
+    function calculateWeightAnimals() {
+      var weightInKg = parseInt(document.getElementById("weight").value);
+      var begemot = Math.trunc(weightInKg / 1750);
+      var belochka = Math.trunc(weightInKg / 0.33);
+      var result = "Ваш вес в бегемотах и белочках: " + begemot + " бегемотов " + belochka + " белочек";
+      // alert(result);
+      document.getElementById("result").innerHTML = result;
+    }
+  </script>
+</body>
+
+</html>

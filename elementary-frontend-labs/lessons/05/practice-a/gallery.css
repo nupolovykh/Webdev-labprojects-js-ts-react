@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dela+Gothic+One&family=Russo+One&display=swap');
+
+body {
+    background-color: rgb(126, 126, 126);
+}
+
+body > h1 {
+    padding-left: 40px;
+
+    background-color: white;
+    border-top: 4px solid black;
+    border-bottom: 4px solid black;
+}
+
+h1 {
+    font-family: 'Russo One', sans-serif;
+    font-weight: lighter;
+}
+
+.bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(243, 224, 200);
+
+    overflow: hidden;
+    padding-bottom: 50px;
+}
+
+.tile {
+    display: flex;
+    width: 100%;
+}
+
+.tile > div {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    overflow: hidden;
+}
+
+.tile > div:first-child {
+    align-items: end;
+}
+
+
+.aiv {
+    width: 800px;
+    height: 534px;
+    margin: 5px;
+}
+
+.rep {
+    width: 1400px;
+    height: 213px;
+    margin-bottom: 5px;
+}
+
+
+button {
+    background-color: rgb(255, 255, 255);
+    border: 2px solid black;
+    border-radius: 4px;
+    cursor: pointer;
+
+    padding: 10px 20px;
+    margin-left: 10px;
+
+    text-align: center;
+    font-size: 22px;
+    font-family: 'Russo One', sans-serif;
+}
