@@ -2,4 +2,4 @@
 
 > Task: exercises exploring other frameworks.
 
-Not started — see [`README-labs.md`](../README-labs.md) for the original course task list.
+Not started — see [`README-labs.md`](../../README-labs.md) for the original course task list.
