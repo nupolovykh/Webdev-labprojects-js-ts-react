@@ -1,5 +1,10 @@
 # WebDevelopment — laboratory works (plain HTML/CSS/JS)
 
+> ⏹️ **Archived Coursework** — This repository contains laboratory/coursework exercises completed as part of university coursework. No longer actively maintained.
+
+**Tech Stack:** HTML5, CSS3, JavaScript (vanilla)  
+**Contents:** 10 lessons with 22 practices, final project, 70+ HTML pages with full screenshot documentation
+
 A set of introductory front-end coursework: pure HTML5, CSS3, and vanilla JavaScript — no build tools, no frameworks, no dependencies. Each lesson folder holds the practical exercises done in that session, numbered continuously across the whole course (practice 1 through 22).
 
 **How to view:** every practice is a static page — open its `.html` file directly in a browser, no server or build step needed. Two practices (07a, 08b) are Node console scripts instead — run them with `node <file>.js`. Click a practice name below to see every page/script in it with a full screenshot gallery; the preview here is just the single most representative shot.
@@ -92,3 +97,14 @@ sandbox/           standalone JS/Node experiments, outside the lesson sequence
 ## Sandbox
 
 [`sandbox/`](sandbox) — standalone JavaScript/Node experiments (async patterns, module imports) written alongside the lessons but not tied to a specific one. Not part of the graded sequence.
+
+## Related Laboratory Work
+
+This repository is part of a series of university coursework projects:
+- [**javascript-lab-webdev-plus-react**](https://github.com/nupolovykh/webdevelopment-laboratory-works-plus-react-project) — Web development with React
+- [**javascript-lab-webdev-react-learning**](https://github.com/nupolovykh/webdevelopment-selfless-react-learning) — React learning exercises
+- [**python-lab-parsing-and-testing**](https://github.com/nupolovykh/python-parsing-and-testing) — Python parsing and testing
+- [**csharp-lab-dotnet-with-gidsik**](https://github.com/nupolovykh/dotnet-laboratoty-works-with-gidsik) — C# .NET coursework
+- [**csharp-lab-winform-db-learning**](https://github.com/nupolovykh/winform-application-db-and-git-learning) — WinForm and database learning
+
+All coursework repositories are marked with the `archived-coursework` topic for easy discovery on the GitHub profile.
