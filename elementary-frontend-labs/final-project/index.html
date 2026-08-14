@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Planning App</title>
+</head>
+
+<body>
+    <header>
+        <h1>Мой план дел</h1>
+    </header>
+
+    <main>
+        <section>
+            <form>
+                <input type="text" id="taskInput" placeholder="Добавить новое дело...">
+                <button type="button" onclick="addTask()">Добавить</button>
+            </form>
+
+            <div class="selector">
+                <h2>Выберите группу заметок:</h2>
+                <select id="noteGroupSelector" onchange="showNotes()">
+                    <option value="all">Все заметки</option>
+                    <option value="current">Активные</option>
+                    <option value="completed">Завершенные</option>
+                    <option value="deleted">Удаленные</option>
+                </select>
+            </div>
+
+            <div class="list">
+                <div id="current">
+                    <h2>Активные дела</h2>
+                    <ul id="activeTasks"></ul>
+                </div>
+                <div id="completed">
+                    <h2>Завершенные дела</h2>
+                    <ul id="completedTasks"></ul>
+                </div>
+                <div id="deleted">
+                    <h2>Удаленные дела</h2>
+                    <ul id="deletedTasks"></ul>
+                </div>
+            </div>
+        </section>
+        <script src="scripts.js"></script>
+    </main>
+
+    <footer>
+        <h2>&copy; 2023 Индивидуальный проект</h2>
+    </footer>
+</body>
+
+</html>
