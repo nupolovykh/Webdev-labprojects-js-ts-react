@@ -3,7 +3,7 @@
 | Page | Preview |
 |---|---|
 | [Lab index](thirteenth.html) | <img src="results/screenshot-1.png" width="260"> |
-| [2](forms.html) | <img src="results/screenshot-2.png" width="260"> |
-| [3](tempt.html) | <img src="results/screenshot-3.png" width="260"> |
+| [Reader survey](forms.html) | <img src="results/screenshot-2.png" width="260"> |
+| [Reader survey (v2)](tempt.html) | <img src="results/screenshot-3.png" width="260"> |
 
 [← Back to main README](../../../README.md)
