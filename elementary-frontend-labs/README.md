@@ -98,13 +98,3 @@ sandbox/           standalone JS/Node experiments, outside the lesson sequence
 
 [`sandbox/`](sandbox) — standalone JavaScript/Node experiments (async patterns, module imports) written alongside the lessons but not tied to a specific one. Not part of the graded sequence.
 
-## Related Laboratory Work
-
-This repository is part of a series of university coursework projects:
-- [**javascript-lab-webdev-plus-react**](https://github.com/nupolovykh/webdevelopment-laboratory-works-plus-react-project) — Web development with React
-- [**javascript-lab-webdev-react-learning**](https://github.com/nupolovykh/webdevelopment-selfless-react-learning) — React learning exercises
-- [**python-lab-parsing-and-testing**](https://github.com/nupolovykh/python-parsing-and-testing) — Python parsing and testing
-- [**csharp-lab-dotnet-with-gidsik**](https://github.com/nupolovykh/dotnet-laboratoty-works-with-gidsik) — C# .NET coursework
-- [**csharp-lab-winform-db-learning**](https://github.com/nupolovykh/winform-application-db-and-git-learning) — WinForm and database learning
-
-All coursework repositories are marked with the `archived-coursework` topic for easy discovery on the GitHub profile.

@@ -32,22 +32,24 @@ labs/
 
 ## Labs
 
-| Lab | Topic | Location |
-|---|---|---|
-| 00 | HTML | [`labs/00-html/`](labs/00-html) |
-| 01 | CSS | [`labs/01-css/`](labs/01-css) |
-| 02 | Оживляем список дел: прикручиваем JS | [`labs/02-js-interactivity/`](labs/02-js-interactivity) |
-| 03 | JavaScript: асинхронность, решение задач | [`labs/03-async-javascript/`](labs/03-async-javascript) |
-| 04 | NodeJS и NPM | [`labs/04-nodejs-and-npm/`](labs/04-nodejs-and-npm) |
-| 05 | Настройка инфраструктуры. Сборка проекта | [`labs/05-webpack-setup/`](labs/05-webpack-setup) |
-| 06 | TypeScript | [`labs/06-typescript/`](labs/06-typescript) |
-| 07 | React: настройка и "Hello world" | [`labs/07-react-hello-world/`](labs/07-react-hello-world) |
-| 08 | React: функциональные компоненты и хуки | [`labs/08-react-hooks/`](labs/08-react-hooks) |
-| 09 | React: формы, контролы, валидация | [`labs/09-react-forms/`](labs/09-react-forms) |
-| 10 | React: маршрутизация и запросы в сеть | [`labs/10-react-routing-and-queries/`](labs/10-react-routing-and-queries) |
-| 11 | React + Typescript | [`labs/11-react-typescript-rewrite/`](labs/11-react-typescript-rewrite) |
-| 12 | Тестирование: react-testing-library | [`labs/12-testing/`](labs/12-testing) |
-| 13 | Работа с API | [`labs/13-work-with-api/`](labs/13-work-with-api) — not started |
-| 14 | Другие фреймворки | [`labs/14-other-frameworks/`](labs/14-other-frameworks) — not started |
+| Lab | Topic | Location | Preview |
+|---|---|---|---|
+| 00 | HTML | [`labs/00-html/`](labs/00-html) | see 05 |
+| 01 | CSS | [`labs/01-css/`](labs/01-css) | see 05 |
+| 02 | Оживляем список дел: прикручиваем JS | [`labs/02-js-interactivity/`](labs/02-js-interactivity) | see 05 |
+| 03 | JavaScript: асинхронность, решение задач | [`labs/03-async-javascript/`](labs/03-async-javascript) | <img src="labs/03-async-javascript/required/results/screenshot-1.png" width="280"> |
+| 04 | NodeJS и NPM | [`labs/04-nodejs-and-npm/`](labs/04-nodejs-and-npm) | <img src="labs/04-nodejs-and-npm/nodejs/results/screenshot-1.png" width="280"> |
+| 05 | Настройка инфраструктуры. Сборка проекта | [`labs/05-webpack-setup/`](labs/05-webpack-setup) | <img src="labs/05-webpack-setup/results/screenshot-1.png" width="280"> |
+| 06 | TypeScript | [`labs/06-typescript/`](labs/06-typescript) | <img src="labs/06-typescript/todo-app/results/screenshot-1.png" width="280"> |
+| 07 | React: настройка и "Hello world" | [`labs/07-react-hello-world/`](labs/07-react-hello-world) | see 10 |
+| 08 | React: функциональные компоненты и хуки | [`labs/08-react-hooks/`](labs/08-react-hooks) | see 10 |
+| 09 | React: формы, контролы, валидация | [`labs/09-react-forms/`](labs/09-react-forms) | see 10 |
+| 10 | React: маршрутизация и запросы в сеть | [`labs/10-react-routing-and-queries/`](labs/10-react-routing-and-queries) | <img src="labs/10-react-routing-and-queries/results/screenshot-1.png" width="280"> |
+| 11 | React + Typescript | [`labs/11-react-typescript-rewrite/`](labs/11-react-typescript-rewrite) | <img src="labs/11-react-typescript-rewrite/results/screenshot-1.png" width="280"> |
+| 12 | Тестирование: react-testing-library | [`labs/12-testing/`](labs/12-testing) | see 11 |
+| 13 | Работа с API | [`labs/13-work-with-api/`](labs/13-work-with-api) | not started |
+| 14 | Другие фреймворки | [`labs/14-other-frameworks/`](labs/14-other-frameworks) | not started |
+
+Console-only exercises (labs 03, 04) are screenshotted as terminal-output panels since they have no page to render — see each folder's `results/` for the full command-by-command output, including [`labs/03-async-javascript/optional/`](labs/03-async-javascript/optional) which also has a small interactive HTML page (task 8).
 
 See [`README-labs.md`](README-labs.md) for the original course task text.
