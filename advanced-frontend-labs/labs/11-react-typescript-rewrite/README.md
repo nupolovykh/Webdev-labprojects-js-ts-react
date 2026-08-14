@@ -1,4 +1,4 @@
-# Todo-List React-TypeScript => P.S. README.md by chat-gpt4o
+# Todo-List React-TypeScript
 
 A simple and efficient Todo-List application built with React and TypeScript.
 This project showcases modern frontend development practices, including state
@@ -28,8 +28,8 @@ backend server.
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/DonutsEmperor/WebDevelopment-laboratory-works-plus-react-project.git
-   cd react-ts-new-todo
+   git clone https://github.com/nupolovykh/javascript-project-webdev-react.git
+   cd javascript-project-webdev-react/plus-react-project/labs/11-react-typescript-rewrite
    ```
 3. **Install the dependencies:**
    ```bash
@@ -95,5 +95,9 @@ backend server.
 
 2. **Deploy the build folder to your preferred hosting service.**
 
-![image](https://github.com/DonutsEmperor/WebDevelopment-laboratory-works-plus-react-project/assets/96892429/90fba81b-0bfb-4fca-ab94-c590d41d54a1)
+## Screenshot
+
+<img src="results/screenshot-1.png" width="640">
+
+*(seed data from `backend/deals.json`)*
 
