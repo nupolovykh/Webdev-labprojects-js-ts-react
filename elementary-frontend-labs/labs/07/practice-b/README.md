@@ -2,7 +2,7 @@
 
 | Page | Preview |
 |---|---|
-| [1](seventh.html) | <img src="results/screenshot-1.png" width="260"> |
-| [2](eighth.html) | <img src="results/screenshot-2.png" width="260"> |
+| [JavaScript Lab 7](seventh.html) | <img src="results/screenshot-1.png" width="260"> |
+| [JavaScript Lab 8](eighth.html) | <img src="results/screenshot-2.png" width="260"> |
 
 [← Back to main README](../../../README.md)

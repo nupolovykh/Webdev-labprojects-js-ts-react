@@ -95,3 +95,9 @@ backend server.
 
 2. **Deploy the build folder to your preferred hosting service.**
 
+## Screenshot
+
+<img src="results/screenshot-1.png" width="640">
+
+*(seed data from `backend/deals.json`)*
+
