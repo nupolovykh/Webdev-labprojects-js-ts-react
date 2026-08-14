@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        project:
+          - advanced-frontend-labs/labs/05-webpack-setup
+          - advanced-frontend-labs/labs/06-typescript/todo-app
+          - advanced-frontend-labs/labs/10-react-routing-and-queries
+          - advanced-frontend-labs/labs/11-react-typescript-rewrite
+          - advanced-frontend-labs/labs/11-react-typescript-rewrite/backend
+          - small-fullstack-store-app
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: ${{ matrix.project }}/package-lock.json
+
+      - name: Install dependencies
+        working-directory: ${{ matrix.project }}
+        run: npm ci --no-audit --no-fund
+
+      - name: Build
+        working-directory: ${{ matrix.project }}
+        # CRA treats eslint warnings as build failures when CI=true; these are
+        # old coursework apps with pre-existing lint warnings, not regressions.
+        env:
+          CI: false
+        run: npm run build --if-present
