@@ -16,6 +16,10 @@ jobs:
       - uses: dorny/paths-filter@v3
         id: filter
         with:
+          # "every": a file must match every listed pattern for a filter (so
+          # the '!backend/**' exclusion under ts-rewrite actually excludes,
+          # instead of OR-matching every file that merely isn't in backend/).
+          predicate-quantifier: every
           filters: |
             webpack-setup:
               - 'advanced-frontend-labs/labs/05-webpack-setup/**'
