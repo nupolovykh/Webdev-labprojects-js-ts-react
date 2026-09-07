@@ -16,7 +16,7 @@
 		"express": "^4.21.2",
 		"react": "^19.2.8",
 		"react-dom": "^19.2.8",
-		"react-router-dom": "^7.18.2",
+		"react-router-dom": "^7.18.3",
 		"react-scripts": "5.0.1",
 		"sqlite3": "^6.0.1",
 		"typescript": "^4.9.5",
