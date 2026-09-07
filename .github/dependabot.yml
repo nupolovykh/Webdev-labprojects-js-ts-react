@@ -1,36 +1,55 @@
 version: 2
+
+# Every configuration below targets `security-features-main` rather than main, so
+# no dependency pull request is ever raised against the branch people read. The
+# auto-merge workflow lands them on that branch only after CI has passed; the
+# branch is merged into main by hand.
+#
+# Consequence: target-branch disables Dependabot security updates for these
+# configurations. Advisories still surface as alerts on main.
+#
+# CI needs `pull-requests: read` for these pull requests to build at all — see the
+# permissions block in ci.yml. Dependabot runs with a restricted token that does
+# not grant it by default.
 updates:
   - package-ecosystem: "npm"
     directory: "/advanced-frontend-labs/labs/05-webpack-setup"
     schedule:
       interval: "weekly"
+    target-branch: "security-features-main"
 
   - package-ecosystem: "npm"
     directory: "/advanced-frontend-labs/labs/06-typescript/todo-app"
     schedule:
       interval: "weekly"
+    target-branch: "security-features-main"
 
   - package-ecosystem: "npm"
     directory: "/advanced-frontend-labs/labs/10-react-routing-and-queries"
     schedule:
       interval: "weekly"
+    target-branch: "security-features-main"
 
   - package-ecosystem: "npm"
     directory: "/advanced-frontend-labs/labs/11-react-typescript-rewrite"
     schedule:
       interval: "weekly"
+    target-branch: "security-features-main"
 
   - package-ecosystem: "npm"
     directory: "/advanced-frontend-labs/labs/11-react-typescript-rewrite/backend"
     schedule:
       interval: "weekly"
+    target-branch: "security-features-main"
 
   - package-ecosystem: "npm"
     directory: "/small-fullstack-store-app"
     schedule:
       interval: "weekly"
+    target-branch: "security-features-main"
 
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
+    target-branch: "security-features-main"

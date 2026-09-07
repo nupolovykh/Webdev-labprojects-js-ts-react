@@ -1,6 +1,6 @@
-# React product catalog + GPT-era auth demo
+# React product catalog with a local auth backend
 
-> 🚀 **Portfolio Project** — a standalone app, not discrete lab exercises.
+> ⏹️ **Archived Coursework** — a standalone app rather than discrete lab exercises.
 
 **Tech Stack:** React, TypeScript, React Router, Axios, Tailwind CSS · Node.js/Express + SQLite backend
 
