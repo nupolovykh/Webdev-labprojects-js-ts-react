@@ -32,6 +32,12 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  # An explicit block zeroes out everything it does not name, and reading a
+  # commit's check runs is refused without this one — the first sweep died on
+  # "Resource not accessible by integration (HTTP 403)" from
+  # /repos/{owner}/{repo}/commits/{sha}/check-runs while the pull request
+  # listing beside it returned 200.
+  checks: read
 
 jobs:
   auto-merge:
@@ -69,6 +75,10 @@ jobs:
           while IFS=$'\t' read -r number sha; do
             [ -n "$number" ] || continue
 
+            # GitHub computes mergeability lazily, so this is often "unknown" on
+            # a first read. That is not a problem: an unknown state falls
+            # through to the merge attempt below, which reports the conflict
+            # itself.
             mergeable=$(gh api "repos/$REPO/pulls/$number" --jq '.mergeable_state')
             if [ "$mergeable" = "dirty" ]; then
               echo "#$number conflicts with the base branch; leaving it for Dependabot to rebase."
