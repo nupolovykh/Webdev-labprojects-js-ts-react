@@ -29,7 +29,7 @@ backend server.
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/nupolovykh/Webdev-labprojects-js-ts-react.git
-   cd javascript-project-webdev-react/advanced-frontend-labs/labs/11-react-typescript-rewrite
+   cd Webdev-labprojects-js-ts-react/advanced-frontend-labs/labs/11-react-typescript-rewrite
    ```
 3. **Install the dependencies:**
    ```bash
