@@ -48,7 +48,7 @@ jobs:
     if: >-
       github.event_name != 'workflow_run' ||
       (github.event.workflow_run.event == 'pull_request' &&
-       github.event.workflow_run.actor.login == 'dependabot[bot]')
+       startsWith(github.event.workflow_run.head_branch, 'dependabot/'))
     runs-on: ubuntu-latest
     steps:
       - name: Merge every dependency pull request whose checks have passed
@@ -64,6 +64,7 @@ jobs:
           open=$(gh api --paginate \
                    "repos/$REPO/pulls?state=open&base=security-features-main&per_page=100" \
                    --jq '.[]
+                         | select(.user.login == "dependabot[bot]")
                          | select(.head.ref | startswith("dependabot/"))
                          | "\(.number)\t\(.head.sha)"')
 
