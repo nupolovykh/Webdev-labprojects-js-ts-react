@@ -16,40 +16,40 @@ updates:
     directory: "/advanced-frontend-labs/labs/05-webpack-setup"
     schedule:
       interval: "weekly"
-    target-branch: "security-features-main"
+    target-branch: "deps"
 
   - package-ecosystem: "npm"
     directory: "/advanced-frontend-labs/labs/06-typescript/todo-app"
     schedule:
       interval: "weekly"
-    target-branch: "security-features-main"
+    target-branch: "deps"
 
   - package-ecosystem: "npm"
     directory: "/advanced-frontend-labs/labs/10-react-routing-and-queries"
     schedule:
       interval: "weekly"
-    target-branch: "security-features-main"
+    target-branch: "deps"
 
   - package-ecosystem: "npm"
     directory: "/advanced-frontend-labs/labs/11-react-typescript-rewrite"
     schedule:
       interval: "weekly"
-    target-branch: "security-features-main"
+    target-branch: "deps"
 
   - package-ecosystem: "npm"
     directory: "/advanced-frontend-labs/labs/11-react-typescript-rewrite/backend"
     schedule:
       interval: "weekly"
-    target-branch: "security-features-main"
+    target-branch: "deps"
 
   - package-ecosystem: "npm"
     directory: "/small-fullstack-store-app"
     schedule:
       interval: "weekly"
-    target-branch: "security-features-main"
+    target-branch: "deps"
 
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
-    target-branch: "security-features-main"
+    target-branch: "deps"
