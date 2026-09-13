@@ -35,6 +35,15 @@ updates:
     schedule:
       interval: "weekly"
     target-branch: "deps"
+    # @types/node describes the Node this runs on, and CI provisions Node 20, so
+    # a 26.x bump is not an upgrade — it is a description of a runtime nothing
+    # here uses. It is also unbuildable: this lab pins typescript ^4.9.5, and
+    # tsc 4.9 cannot even parse @types/node 26's declarations, so `npx tsc
+    # --noEmit` fails with TS1005 inside node_modules/@types/node/ffi.d.ts.
+    # Raise the cap together with the Node version in ci.yml, not before it.
+    ignore:
+      - dependency-name: "@types/node"
+        versions: [">= 21.0.0"]
 
   - package-ecosystem: "npm"
     directory: "/advanced-frontend-labs/labs/11-react-typescript-rewrite/backend"
