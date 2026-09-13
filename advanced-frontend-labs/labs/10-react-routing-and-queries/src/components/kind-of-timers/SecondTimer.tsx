@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 export const SecondTimer = () => {
 	const [time, setTime] = useState(0);
 	const [isRunning, setIsRunning] = useState(false);
-	const intervalRef = useRef<NodeJS.Timeout>();
+	const intervalRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
 	useEffect(() => {
 		if (isRunning) {
