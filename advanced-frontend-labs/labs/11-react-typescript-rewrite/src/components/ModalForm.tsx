@@ -5,7 +5,7 @@ import { useDealsContext } from "../context/DealsContext"
 interface ModalFormProps {
 	deal: IDeal | null
 	action : (deal : IDeal) => void
-	inner : JSX.Element
+	inner : React.JSX.Element
 	close : () => void
 }
 
