@@ -1,0 +1,16 @@
+# Normalise line endings on commit.
+* text=auto eol=lf
+
+# Binary, never normalised.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+
+# Linguist: this repository's own code is the TypeScript/React work. The archived
+# intro coursework is plain HTML/CSS kept for the record, and the chat server under
+# cloned-backend/ is third-party — neither should drive the language bar.
+elementary-frontend-labs/** linguist-documentation
+advanced-frontend-labs/labs/10-react-routing-and-queries/cloned-backend/** linguist-vendored
