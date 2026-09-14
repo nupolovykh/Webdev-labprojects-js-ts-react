@@ -1,0 +1,129 @@
+name: Security audit
+
+# Deliberately NOT part of CI.
+#
+# `npm audit` answers a question about the global advisory database, not about
+# the commit under test. A newly published advisory turns every open pull request
+# red at once — including the very bump that fixes it — and in a repository where
+# green CI is what merges updates, that stops the updates from landing exactly
+# when they matter most. Here it reports on a schedule and blocks nothing.
+#
+# It is also the one workflow that speaks about `main` itself. Dependabot's
+# security updates ignore `target-branch` and never enter the `deps` flow, so
+# this report is the only place the whole picture is written down.
+
+on:
+  schedule:
+    - cron: "41 5 * * 1"
+  workflow_dispatch:
+
+# GITHUB_TOKEN is enough here: the only thing this writes is the report issue.
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  npm:
+    name: npm audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # Projects are discovered rather than listed, so a lab added later is
+      # audited without anybody remembering to edit this file. The vendored
+      # `cloned-backend/` is skipped: it is third-party code kept for reference
+      # and not something this repository can fix — see its NOTICE.md.
+      #
+      # `npm audit` is run against the lockfile alone. Installing first would
+      # need every lab to install on the runner, and a lab that cannot is a
+      # blind spot, not a clean result.
+      - name: Audit every project
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Explicit: the step's shell is `bash -e`, and this script handles its
+          # own failures rather than dying at the first one.
+          set +e
+          set -uo pipefail
+          audited=0
+          affected=0
+          details=""
+
+          while IFS= read -r lock; do
+            dir=$(dirname "$lock")
+            case "$dir" in *cloned-backend*) continue;; esac
+            echo "::group::${dir}"
+            # `if` context, not a bare assignment: GitHub runs this step under
+            # `bash -e`, and `npm audit` exits non-zero precisely when it finds
+            # something — a plain assignment would kill the script on the first
+            # finding, before anything could be reported.
+            if report=$(cd "$dir" && npm audit --audit-level=high 2>&1); then
+              rc=0
+            else
+              rc=$?
+            fi
+            printf '%s\n' "$report"
+            audited=$((audited + 1))
+            if [ "$rc" -ne 0 ]; then
+              affected=$((affected + 1))
+              line=$(grep -E '[0-9]+ (vulnerabilit|high|critical)' <<<"$report" | tail -1)
+              details="${details}
+          - \`${dir}\` — ${line:-see the run log}"
+              echo "::warning::advisories at high or above in ${dir}"
+            fi
+            echo "::endgroup::"
+          done < <(find . -name package-lock.json -not -path './.git/*' -not -path '*/node_modules/*' | sort)
+
+          summary="Audited ${audited} project(s); ${affected} carry advisories at high or above."
+          echo "$summary"
+
+          # The finding is an issue, not a failed run: this workflow runs on a
+          # schedule against the default branch, so a failure would pin a red
+          # check to whatever commit that branch points at — permanently, since a
+          # check run cannot be deleted and the mark outlives the fix.
+          marker="<!-- vulnerable-dependencies -->"
+          # The marker is matched inside jq, against the body as one value. Reading
+          # the listing line by line does not work: an issue body is multi-line, the
+          # marker sits on a line of its own, and the first field of *that* line is
+          # the marker itself rather than a number — which then goes into the request
+          # path and comes back 404. That is what made this step fail.
+          issue=$(gh api --paginate "repos/$GITHUB_REPOSITORY/issues?state=open&per_page=100" \
+            --jq ".[] | select(.pull_request | not) | select((.body // \"\") | contains(\"$marker\")) | .number" \
+            2>/dev/null | head -1)
+
+          if [ "$affected" -gt 0 ] || [ "$audited" -eq 0 ]; then
+            if [ "$audited" -eq 0 ]; then
+              detail="No project could be audited, so this run proves nothing."
+            else
+              detail="${affected} project(s) reference packages with advisories at high or above."
+            fi
+            body="${detail}
+          ${details}
+
+          ${summary}
+
+          Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}
+
+          ${marker}"
+            if [ -n "$issue" ]; then
+              gh api --method PATCH "repos/$GITHUB_REPOSITORY/issues/${issue}" -f "body=${body}" >/dev/null \
+                && { echo "::warning::${detail} Updated issue #${issue}."; exit 0; }
+            else
+              issue=$(gh api "repos/$GITHUB_REPOSITORY/issues" -f "title=Vulnerable dependencies" \
+                -f "body=${body}" --jq '.number' 2>/dev/null) \
+                && { echo "::warning::${detail} Opened issue #${issue}."; exit 0; }
+            fi
+            echo "::error::${detail} The report could not be filed, so this run fails instead."
+            exit 1
+          fi
+
+          if [ -n "$issue" ]; then
+            gh api --method PATCH "repos/$GITHUB_REPOSITORY/issues/${issue}" \
+              -f state=closed -f state_reason=completed >/dev/null 2>&1 || true
+            echo "Nothing at high or above any more; closed issue #${issue}."
+          fi
