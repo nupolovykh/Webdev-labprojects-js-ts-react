@@ -37,7 +37,7 @@ jobs:
 
       - name: Build matrix of changed projects
         id: matrix
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             // project: npm working directory
