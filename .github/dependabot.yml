@@ -78,9 +78,16 @@ updates:
     # tsc 4.9 cannot even parse @types/node 26's declarations, so `npx tsc
     # --noEmit` fails with TS1005 inside node_modules/@types/node/ffi.d.ts.
     # Raise the cap together with the Node version in ci.yml, not before it.
+    #
+    # react-icons from 5.3 types its components as returning ReactNode, and
+    # TypeScript before 5.1 rejects that as a JSX element (TS2786), whatever
+    # @types/react says. react-scripts@5.0.1 holds typescript at ^4, so the
+    # icon package stays at 5.2.1 — see the README.
     ignore:
       - dependency-name: "@types/node"
         versions: [">= 21.0.0"]
+      - dependency-name: "react-icons"
+        versions: [">= 5.3.0"]
 
   - package-ecosystem: "npm"
     directory: "/advanced-frontend-labs/labs/11-react-typescript-rewrite/backend"
