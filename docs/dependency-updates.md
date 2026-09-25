@@ -38,7 +38,22 @@ commit and every bot commit is regenerable: reset the branch and Dependabot
 re-reads the manifest and raises the same bumps again.
 
 The guard in `deps-promote.yml` keeps that true: one non-bot commit on `deps`
-and the workflow resets nothing and turns the run red.
+and the workflow resets nothing and opens a *Dependency promotion is blocked*
+issue, which it closes itself on the first run that is not blocked.
+
+## Schedule and groups
+
+Monthly. Per directory, one pull request for every minor and patch bump and one
+per major. Packages that must move together are a group of their own across
+all update types, so Dependabot never raises one of them alone: React with
+`react-dom` and their `@types`, `react-router` with `react-router-dom`, and
+webpack with its CLI, dev server, plugins and loaders.
+
+The three Create React App projects (`labs/10`, `labs/11`, `small-fullstack-store-app`)
+are held to what `react-scripts@5.0.1` supports — TypeScript 4, Jest 27. A major
+that cannot run there is pinned in `.github/dependabot.yml` with the reason next
+to it, the way `@types/node` already is in `labs/11`, rather than left as a red
+pull request.
 
 ## Where `deps` came from
 
@@ -57,20 +72,17 @@ what the pipeline needs and one run fewer than adding `deps` to the push filter:
 the gate reads the `pull_request` run of each Dependabot pull request, and the
 promotion gets its own `pull_request` run on the combined result.
 
-## Why there is no scheduled vulnerability audit here
+## The vulnerability audit
 
-The other repositories on this pipeline run a weekly `npm audit` / `pip-audit`
-that turns red when a new advisory appears. It is not installed here, on purpose.
+`security-audit.yml` runs `npm audit --audit-level=high` weekly against every
+lockfile except the vendored `cloned-backend/`, and writes what it finds into
+the run's summary and warnings. It never fails the run and never opens an issue:
+this repository carries hundreds of advisories across labs last touched in
+2024, and a red run or an issue that can never close would only teach everyone
+to ignore it. The Security tab's Dependabot alerts show the same picture.
 
-This repository starts at 414 open advisories — 12 critical, 214 high — across
-eleven lab projects, several of which were last touched in 2024. A workflow that
-is red from its first run and stays red is not a signal; it is something everyone
-learns to ignore, and it would make a green run mean nothing, which is the one
-property the rest of this design depends on. Dependabot alerts already report
-the same information without pretending to be a gate.
-
-Install the audit here once the count is low enough that red means "something
-new", not "still the same 414".
+Dependabot security updates are switched off: they target `main` directly and
+would bypass `deps`.
 
 ## Not everything is covered
 
@@ -94,7 +106,8 @@ Not in the repository, so listed here:
 2. **Actions → General → Workflow permissions**: *Allow GitHub Actions to create
    and approve pull requests* — ticked.
 3. **General → Pull Requests**: squash merging enabled.
-4. **Advanced Security → Dependabot alerts**: enabled.
+4. **Advanced Security → Dependabot alerts**: enabled. **Dependabot security
+   updates**: disabled — they target `main` directly and would bypass `deps`.
 5. **Branch protection on `main`**: require a pull request, and tick *Do not
    allow bypassing the above settings* — the second half is what actually stops
    a direct push by an administrator.

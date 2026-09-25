@@ -37,23 +37,18 @@ Introductory front-end coursework: pure HTML5, CSS3, and vanilla JavaScript — 
 
 ## Dependency updates
 
-Dependabot runs weekly against every sub-project, one pull request per package, and
-none of them target `main`. They are opened against `security-features-main`, a
-long-lived branch that exists only to accumulate dependency bumps, and and are merged
-into it automatically, but only after CI passes on the pull request. That branch is merged into `main` by hand,
-whenever its accumulated state is worth taking — so `main` gains one deliberate
-merge instead of a stream of bot commits.
+Dependabot runs monthly against every sub-project and never targets `main`. Its
+pull requests go to `deps`, a bot-only branch, and merge there automatically once
+CI passes on that exact commit. What collects on `deps` reaches `main` through one
+promotion pull request merged by hand, so `main` gains one deliberate commit
+instead of a stream of bot commits. `deps` is then re-cut from `main` rather than
+merged into, so it never drifts or conflicts.
 
-Configuration is in [`.github/dependabot.yml`](.github/dependabot.yml)
-(`target-branch`) and [`.github/workflows/dependabot-auto-merge.yml`](.github/workflows/dependabot-auto-merge.yml).
-
-Two consequences worth knowing:
-
-- Setting `target-branch` disables Dependabot *security* updates for these
-  configurations. Security advisories still appear as alerts on `main`; they are
-  acted on by hand.
-- `security-features-main` drifts from `main` as `main` moves. Merge `main` into it
-  before taking it back, or the eventual merge arrives with conflicts.
+Configuration is in [`.github/dependabot.yml`](.github/dependabot.yml) and the
+workflows under [`.github/workflows/`](.github/workflows); the design is written
+up in [`docs/dependency-updates.md`](docs/dependency-updates.md). Dependabot
+*security* updates are switched off, because they always target `main`; advisories
+show in the Security tab and in the weekly `security-audit.yml` run summary.
 
 One dependency is held back on purpose: `react-icons` is pinned to `5.2.1` in
 `advanced-frontend-labs/labs/11-react-typescript-rewrite`. From 5.3 it types its
