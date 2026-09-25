@@ -81,6 +81,14 @@ jobs:
           cache: npm
           cache-dependency-path: ${{ matrix.project }}/package-lock.json
 
+      # Dependabot writes lockfiles with npm 11, and Node 20 ships npm 10. The
+      # two disagree about optional peer dependencies: npm 11 drops a nested
+      # optional peer that npm 10 then reports as missing, so `npm ci` refused
+      # every Dependabot lockfile in labs/11 (Missing: yaml@2.9.1). Install with
+      # the npm that wrote the lockfile.
+      - name: Use npm 11
+        run: npm install -g npm@11
+
       - name: Install dependencies
         working-directory: ${{ matrix.project }}
         run: npm ci --no-audit --no-fund

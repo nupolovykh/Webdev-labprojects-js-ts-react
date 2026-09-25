@@ -52,6 +52,7 @@ show in the Security tab and in the weekly `security-audit.yml` run summary.
 
 One dependency is held back on purpose: `react-icons` is pinned to `5.2.1` in
 `advanced-frontend-labs/labs/11-react-typescript-rewrite`. From 5.3 it types its
-components as returning `ReactNode`, which `@types/react` 18 rejects as a JSX
-element (TS2786). TypeScript 5 accepts it, but `react-scripts@5.0.1` pins
+components as returning `ReactNode`, which TypeScript before 5.1 rejects as a JSX
+element (TS2786). TypeScript 5.1 accepts it, but `react-scripts@5.0.1` pins
 typescript to `^4` as a peer dependency, so the icon package is what gives.
+Dependabot is told to leave it there in [`.github/dependabot.yml`](.github/dependabot.yml).
