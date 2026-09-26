@@ -11,7 +11,9 @@ version: 2
 # build blocks only itself. Packages that must move together get their own
 # group across all update types, so Dependabot never raises one of them alone:
 # React with its DOM renderer and type packages, React Router's two packages,
-# webpack with its CLI, dev server, plugins and loaders.
+# webpack with its CLI, dev server, plugins and loaders. minor-and-patch
+# excludes those patterns, so two groups never raise the same line in one scan
+# (the second pull request would conflict).
 #
 # Dependabot security updates are switched off for this repository: they always
 # target main and would bypass `deps`. security-audit.yml reports advisories
@@ -31,6 +33,7 @@ updates:
         patterns: ["webpack", "webpack-*", "*-webpack-plugin", "*-loader"]
       minor-and-patch:
         patterns: ["*"]
+        exclude-patterns: ["webpack", "webpack-*", "*-webpack-plugin", "*-loader"]
         update-types: ["minor", "patch"]
 
   - package-ecosystem: "npm"
@@ -43,6 +46,7 @@ updates:
         patterns: ["webpack", "webpack-*", "*-webpack-plugin", "*-loader"]
       minor-and-patch:
         patterns: ["*"]
+        exclude-patterns: ["webpack", "webpack-*", "*-webpack-plugin", "*-loader"]
         update-types: ["minor", "patch"]
 
   - package-ecosystem: "npm"
@@ -57,6 +61,7 @@ updates:
         patterns: ["react-router", "react-router-dom"]
       minor-and-patch:
         patterns: ["*"]
+        exclude-patterns: ["react", "react-dom", "@types/react", "@types/react-dom", "react-router", "react-router-dom"]
         update-types: ["minor", "patch"]
 
   - package-ecosystem: "npm"
@@ -71,6 +76,7 @@ updates:
         patterns: ["react-router", "react-router-dom"]
       minor-and-patch:
         patterns: ["*"]
+        exclude-patterns: ["react", "react-dom", "@types/react", "@types/react-dom", "react-router", "react-router-dom"]
         update-types: ["minor", "patch"]
     # @types/node describes the Node this runs on, and CI provisions Node 20, so
     # a 26.x bump is not an upgrade — it is a description of a runtime nothing
@@ -111,6 +117,7 @@ updates:
         patterns: ["react-router", "react-router-dom"]
       minor-and-patch:
         patterns: ["*"]
+        exclude-patterns: ["react", "react-dom", "@types/react", "@types/react-dom", "react-router", "react-router-dom"]
         update-types: ["minor", "patch"]
 
   - package-ecosystem: "github-actions"

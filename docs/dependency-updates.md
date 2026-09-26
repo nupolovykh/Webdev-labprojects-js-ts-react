@@ -47,7 +47,8 @@ Monthly. Per directory, one pull request for every minor and patch bump and one
 per major. Packages that must move together are a group of their own across
 all update types, so Dependabot never raises one of them alone: React with
 `react-dom` and their `@types`, `react-router` with `react-router-dom`, and
-webpack with its CLI, dev server, plugins and loaders.
+webpack with its CLI, dev server, plugins and loaders. `minor-and-patch`
+excludes those patterns, so two groups never edit the same line in one scan.
 
 The three Create React App projects (`labs/10`, `labs/11`, `small-fullstack-store-app`)
 are held to what `react-scripts@5.0.1` supports — TypeScript 4, Jest 27. A major
